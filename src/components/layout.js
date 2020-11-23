@@ -1,16 +1,10 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-
+import GlobalStyles from "../styles/globalStyles"
+import GlobalFonts from "../fonts/fonts"
 import Header from "./header"
-import "./layout.css"
+//import "./layout.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -23,23 +17,48 @@ const Layout = ({ children }) => {
     }
   `)
 
+  // useEffect(() => {
+  //   const FB = window.FB
+  //   window.fbAsyncInit = function () {
+  //     this.FB.init({
+  //       xfbml: true,
+  //       version: "v9.0",
+  //     })
+  //   }
+
+  //   const fbChat = (d, s, id) => {
+  //     var js,
+  //       fjs = d.getElementsByTagName(s)[0]
+  //     if (d.getElementById(id)) return
+  //     js = d.createElement(s)
+  //     js.id = id
+  //     js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"
+  //     fjs.parentNode.insertBefore(js, fjs)
+  //   }
+
+  //   fbChat(document, "script", "facebook-jssdk")
+
+  // }, [])
+
   return (
     <>
+      <GlobalFonts />
+      <GlobalStyles />
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+      <main>{children}</main>
+      <footer>
+        © {new Date().getFullYear()}, Built with
+        {` `}
+        <a href="https://www.gatsbyjs.org">Gatsby</a>
+      </footer>
+      {/* <!-- Load Facebook SDK for JavaScript --> */}
+      {/* <div id="fb-root"></div> */}
+      {/* <!-- Your Chat Plugin code --> */}
+      {/* <div
+          className="fb-customerchat"
+          attribution="setup_tool"
+          page_id="105343014706572"
+        ></div> */}
     </>
   )
 }
