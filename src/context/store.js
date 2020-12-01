@@ -8,8 +8,8 @@ const client = Client.buildClient({
 
 export const defaultStoreContext = {
   client,
-  //adding: true,
-  //checkout: { lineItems: [] },
+  adding: true,
+  checkout: {},
   //products: [],
   //shop: {},
   //filteredType: "all",
@@ -17,7 +17,7 @@ export const defaultStoreContext = {
   customerAccessToken: null,
   setValue: () => {},
   buyNow: async () => {},
-  //addVariantToCart: () => {},
+  addToCart: () => {},
   //addVariantToCartAndBuyNow: () => {},
   //removeLineItem: () => {},
   //updateLineItem: () => {},

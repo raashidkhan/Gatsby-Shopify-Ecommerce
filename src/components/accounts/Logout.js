@@ -23,7 +23,6 @@ const Logout = () => {
     <Mutation
       mutation={CUSTOMER_LOGOUT}
       onCompleted={data => {
-        console.log(data)
         if (data.customerAccessTokenDelete.userErrors.length) return
         setValue({
           customerAccessToken: "",
@@ -44,12 +43,7 @@ const Logout = () => {
               })
             }}
           >
-            <p
-              className="has-text-centered has-text-underlined has-text-black"
-              style={{ textDecoration: "underline" }}
-            >
-              Log out
-            </p>
+            <p>Log out</p>
           </Link>
         )
       }}

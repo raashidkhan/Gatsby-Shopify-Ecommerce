@@ -4,13 +4,14 @@ import Image from "gatsby-image"
 import Store from "../../context/store"
 import { Devices } from "../../styles/mediaBreakpoint"
 import Loader from "../../styles/buttons/loader"
+import CartButton from "../addToCart"
+import Button from "../../styles/buttons/buttons"
 const ProductCard = props => {
   const { buyNow } = useContext(Store)
   const [loading, setLoading] = useState(false)
   const handleCheckout = (productVariantId, quantity) => {
     setLoading(true)
-    const productId = productVariantId.replace("Shopify__ProductVariant__", "")
-    buyNow(productId, quantity)
+    buyNow(productVariantId, quantity)
   }
 
   return (
@@ -26,7 +27,7 @@ const ProductCard = props => {
         <Button primary onClick={() => handleCheckout(props.id, 1)}>
           {loading ? <Loader /> : "Buy now"}
         </Button>
-        <Button>Add to Cart</Button>
+        <CartButton id={props.id} quantity={1} />
       </ProjectCardActions>
     </ProductCardWrapper>
   )
@@ -101,28 +102,5 @@ const ProjectCardActions = styled.div`
   @media ${Devices.mobile} {
     flex-direction: column;
     padding-top: 0;
-  }
-`
-const Button = styled.button`
-  cursor: pointer;
-  //padding: 1rem 2rem;
-  width: 40%;
-  height: 4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--primary);
-  border-radius: var(--bora-medium);
-  font-weight: 400;
-  font-size: 1.6rem;
-  background: ${props => (props.primary ? "var(--primary)" : "transparent")};
-  color: ${props => (props.primary ? "var(--onPrimary)" : "var(--primary)")};
-
-  @media ${Devices.mobile} {
-    width: 100%;
-    padding: 2rem;
-    &:last-child {
-      margin-top: 2rem;
-    }
   }
 `

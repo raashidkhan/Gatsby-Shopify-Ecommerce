@@ -34,18 +34,15 @@
     "shopify-buy": "^2.9.0",
     "styled-components": "^4.4.1"
   },
-
   "devDependencies": {
     "prettier": "2.1.0"
   },
   "keywords": [
     "gatsby"
   ],
-  
   "resolutions": {
     "styled-components": "^5"
   },
-
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",

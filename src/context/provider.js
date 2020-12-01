@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { navigate } from "gatsby"
 import StoreContext, { defaultStoreContext } from "../context/store"
+import { useContext } from "react"
 const isBrowser = typeof window !== "undefined"
 
 const Provider = ({ children }) => {
   const [store, updateStore] = useState(defaultStoreContext)
+  const [checkout, setCheckout] = useState({})
   const getLocalStorage = value => {
     try {
       return JSON.parse(localStorage.getItem(value))
@@ -15,44 +17,33 @@ const Provider = ({ children }) => {
 
   useEffect(() => {
     const initializeCheckout = async () => {
-      const isBrowser = typeof window !== "undefined"
-      const existingCheckoutId = isBrowser
-        ? localStorage.getItem("shopify_checkout_id")
-        : null
+      try {
+        // Check if browser exits
+        const isBrowser = typeof window !== "undefined"
+        // Check if id exits in local storage
+        const existingCheckoutId = isBrowser
+          ? JSON.parse(localStorage.getItem("checkout_Id"))
+          : null
 
-      const setCheckoutInState = checkout => {
-        if (isBrowser) {
-          localStorage.setItem(
-            "shopify_checkout_id",
-            JSON.stringify(checkout.id)
-          )
+        let newCheckout = null
+        if (existingCheckoutId) {
+          // if id exits , fetch id from shopify
+          newCheckout = await store.client.checkout.fetch(existingCheckoutId)
+        } else {
+          //else create a new checkout id
+          newCheckout = await store.client.checkout.create()
+          isBrowser &&
+            localStorage.setItem("checkout_Id", JSON.stringify(newCheckout.id))
+          console.log(newCheckout.id)
         }
-        updateStore(state => {
-          return { ...state, checkout }
-        })
+        // Set id in state
+        setCheckout(newCheckout.id)
+      } catch (e) {
+        console.error(e)
       }
-
-      const createNewCheckout = () => store.client.checkout.create()
-      const fetchCheckout = id => store.client.checkout.fetch(id)
-
-      if (existingCheckoutId) {
-        try {
-          const checkout = await fetchCheckout(existingCheckoutId)
-
-          // Make sure this cart hasn’t already been purchased.
-          if (!checkout.completedAt) {
-            setCheckoutInState(checkout)
-            return
-          }
-        } catch (e) {
-          localStorage.setItem("shopify_checkout_id", null)
-        }
-      }
-      const newCheckout = await createNewCheckout()
-      setCheckoutInState(newCheckout)
     }
     initializeCheckout()
-  }, [store.client.checkout])
+  }, [])
   return (
     <StoreContext.Provider
       value={{
@@ -79,6 +70,22 @@ const Provider = ({ children }) => {
           )
 
           navigate(addItem.webUrl)
+        },
+        addToCart: async (variantId, quantity) => {
+          const lineItem = [
+            {
+              variantId: variantId,
+              quantity: quantity,
+            },
+          ]
+          console.log(store)
+
+          const addItem = await store.client.checkout.addLineItems(
+            checkout,
+            lineItem
+          )
+
+          console.log(addItem.webUrl)
         },
       }}
     >

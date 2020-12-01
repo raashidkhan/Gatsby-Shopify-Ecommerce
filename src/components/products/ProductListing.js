@@ -25,6 +25,7 @@ const ProductListing = () => {
             id
             price
             title
+            shopifyId
             image {
               localFile {
                 childImageSharp {
@@ -50,7 +51,7 @@ const ProductListing = () => {
               image={item.images[0].localFile.childImageSharp.fluid}
               name={item.title}
               price={item.variants[0].price}
-              id={item.variants[0].id}
+              id={item.variants[0].shopifyId}
             />
           )
         })}
