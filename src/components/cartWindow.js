@@ -3,13 +3,14 @@ import React, { useContext } from "react"
 import styled from "styled-components"
 import Store from "../context/store"
 import Button from "../styles/buttons/buttons"
-const CartWindow = () => {
-  const { checkout, toggleCart } = useContext(Store)
+
+const CartWindow = ({ style }) => {
+  const { checkout, toggleCart, isCartOpen, removeFromCart } = useContext(Store)
 
   console.log(checkout)
   return (
     <Cart>
-      <button onClick={toggleCart}>Close</button>
+      <CloseButton onClick={toggleCart}>Close</CloseButton>
       <CartWrapper>
         {checkout.lineItems.map(item => {
           return (
@@ -21,6 +22,13 @@ const CartWindow = () => {
               <CartItemContent>
                 <h3>{item.title}</h3>
                 <strong>{item.variant.price}</strong>
+                <RemoveItemButton
+                  onClick={() => {
+                    removeFromCart(item.id, 1)
+                  }}
+                >
+                  Remove
+                </RemoveItemButton>
               </CartItemContent>
             </CartItemWrapper>
           )
@@ -59,15 +67,27 @@ const Cart = styled.aside`
   height: 100vh;
   background-color: var(--background);
   z-index: 100;
-
+  box-shadow: var(--shadow-2);
   padding: 2rem;
+`
+
+const CloseButton = styled.button`
+  display: block;
+  margin-left: auto;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0.2rem;
+  margin-bottom: 1rem;
 `
 
 const CartWrapper = styled.div`
   width: 100%;
-  height: 70%;
+  height: 65%;
   z-index: 100;
   overflow-y: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 `
 const CartItemWrapper = styled.article`
   display: flex;
@@ -75,16 +95,17 @@ const CartItemWrapper = styled.article`
   margin: 2rem auto;
   justify-content: space-between;
   align-items: center;
-
   background-color: var(--surface);
-  border-radius: var(--bora-small);
+  border-radius: var(--bora-medium);
   padding: 2rem;
   position: relative;
+  box-shadow: var(--shadow-1);
 `
 const CartItemContent = styled.article`
   width: 70%;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 
   h3 {
     font-size: 1.8rem;
@@ -100,18 +121,18 @@ const CartItemImage = styled.div`
     position: absolute;
     top: -1rem;
     right: -1rem;
-    background-color: red;
     padding: 0.75rem;
     font-size: 1.4rem;
     border-radius: var(--bora-medium);
-    background-color: hsl(0, 0%, 77%);
+    background-color: var(--primary);
     line-height: 1;
     display: inline;
-    color: hsl(0, 0%, 28%);
+    color: hsl(0, 0%, 98%);
   }
   img {
     max-width: 100%;
     display: block;
+    border-radius: var(--bora-medium);
   }
 `
 const CartPrice = styled.div`
@@ -134,4 +155,12 @@ const CartPrice = styled.div`
     align-items: flex-start;
     color: hsl(0, 0%, 28%);
   }
+`
+
+const RemoveItemButton = styled.button`
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0.2rem;
 `

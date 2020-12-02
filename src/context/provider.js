@@ -35,6 +35,9 @@ const Provider = ({ children }) => {
         if (existingCheckoutId) {
           // if id exits , fetch id from shopify
           newCheckout = await store.client.checkout.fetch(existingCheckoutId)
+          const a = await store.client.checkout
+
+          console.log("a", a)
         } else {
           //else create a new checkout id
           newCheckout = await store.client.checkout.create()
@@ -93,7 +96,13 @@ const Provider = ({ children }) => {
             lineItem
           )
           setCheckout(newCheckout)
-          console.log(newCheckout.webUrl)
+        },
+        removeFromCart: async (variantId, quantity) => {
+          const newCheckout = await store.client.checkout.removeLineItems(
+            checkout.id,
+            [variantId]
+          )
+          setCheckout(newCheckout)
         },
       }}
     >

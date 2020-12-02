@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react"
 import Logout from "../components/accounts/Logout"
 import StoreContext from "../context/store"
 import Cart from "./cartWindow"
+
 const Header = ({ siteTitle }) => {
   const { customerAccessToken, isCartOpen, toggleCart } = useContext(
     StoreContext

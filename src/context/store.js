@@ -19,6 +19,7 @@ export const defaultStoreContext = {
   setValue: () => {},
   buyNow: async () => {},
   addToCart: () => {},
+  removeFromCart: () => {},
   //addVariantToCartAndBuyNow: () => {},
   //removeLineItem: () => {},
   //updateLineItem: () => {},
