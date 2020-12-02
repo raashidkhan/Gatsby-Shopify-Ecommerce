@@ -1,11 +1,13 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import Logout from "../components/accounts/Logout"
 import StoreContext from "../context/store"
-
+import Cart from "./cartWindow"
 const Header = ({ siteTitle }) => {
-  const { customerAccessToken } = useContext(StoreContext)
+  const { customerAccessToken, isCartOpen, toggleCart } = useContext(
+    StoreContext
+  )
   const isAuthenticated =
     customerAccessToken &&
     customerAccessToken.expiresAt &&
@@ -33,6 +35,7 @@ const Header = ({ siteTitle }) => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            position: "relative",
           }}
         >
           <Link
@@ -54,6 +57,8 @@ const Header = ({ siteTitle }) => {
           ) : (
             <Link to="/account/register">Sign Up</Link>
           )}
+          <button onClick={toggleCart}>Cart</button>
+          {isCartOpen && <Cart />}
         </h1>
       </div>
     </header>

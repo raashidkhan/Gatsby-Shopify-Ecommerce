@@ -6,7 +6,13 @@ const isBrowser = typeof window !== "undefined"
 
 const Provider = ({ children }) => {
   const [store, updateStore] = useState(defaultStoreContext)
-  const [checkout, setCheckout] = useState({})
+  const [checkout, setCheckout] = useState(defaultStoreContext.checkout)
+  const [isCartOpen, setIsCartOpen] = useState(false)
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen)
+  }
+
   const getLocalStorage = value => {
     try {
       return JSON.parse(localStorage.getItem(value))
@@ -34,10 +40,9 @@ const Provider = ({ children }) => {
           newCheckout = await store.client.checkout.create()
           isBrowser &&
             localStorage.setItem("checkout_Id", JSON.stringify(newCheckout.id))
-          console.log(newCheckout.id)
         }
         // Set id in state
-        setCheckout(newCheckout.id)
+        setCheckout(newCheckout)
       } catch (e) {
         console.error(e)
       }
@@ -48,6 +53,9 @@ const Provider = ({ children }) => {
     <StoreContext.Provider
       value={{
         store,
+        checkout,
+        isCartOpen,
+        toggleCart,
         customerAccessToken: getLocalStorage("customerAccessToken"),
         setValue: value => {
           isBrowser &&
@@ -80,12 +88,12 @@ const Provider = ({ children }) => {
           ]
           console.log(store)
 
-          const addItem = await store.client.checkout.addLineItems(
-            checkout,
+          const newCheckout = await store.client.checkout.addLineItems(
+            checkout.id,
             lineItem
           )
-
-          console.log(addItem.webUrl)
+          setCheckout(newCheckout)
+          console.log(newCheckout.webUrl)
         },
       }}
     >

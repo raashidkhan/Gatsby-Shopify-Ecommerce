@@ -3,7 +3,7 @@ import { Devices } from "../mediaBreakpoint"
 const Button = styled.button`
   cursor: pointer;
   //padding: 1rem 2rem;
-  width: 40%;
+  width: ${props => props.width}%;
   height: 4rem;
   display: flex;
   justify-content: center;

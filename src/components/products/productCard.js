@@ -6,6 +6,7 @@ import { Devices } from "../../styles/mediaBreakpoint"
 import Loader from "../../styles/buttons/loader"
 import CartButton from "../addToCart"
 import Button from "../../styles/buttons/buttons"
+
 const ProductCard = props => {
   const { buyNow } = useContext(Store)
   const [loading, setLoading] = useState(false)
@@ -13,7 +14,6 @@ const ProductCard = props => {
     setLoading(true)
     buyNow(productVariantId, quantity)
   }
-
   return (
     <ProductCardWrapper>
       <ProductCardImage>
@@ -24,7 +24,7 @@ const ProductCard = props => {
         <h2 className="productCard-details--price">₹{props.price}</h2>
       </ProjectCardDetails>
       <ProjectCardActions>
-        <Button primary onClick={() => handleCheckout(props.id, 1)}>
+        <Button width="40" primary onClick={() => handleCheckout(props.id, 1)}>
           {loading ? <Loader /> : "Buy now"}
         </Button>
         <CartButton id={props.id} quantity={1} />

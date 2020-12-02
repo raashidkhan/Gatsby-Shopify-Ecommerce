@@ -9,7 +9,8 @@ const client = Client.buildClient({
 export const defaultStoreContext = {
   client,
   adding: true,
-  checkout: {},
+  isCartOpen: false,
+  checkout: { lineItems: [] },
   //products: [],
   //shop: {},
   //filteredType: "all",

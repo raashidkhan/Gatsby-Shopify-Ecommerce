@@ -6,6 +6,7 @@ const AddToCart = props => {
   //console.log(props.id)
   return (
     <Button
+      width="40"
       onClick={() => {
         addToCart(props.id, 1)
       }}
