@@ -6,7 +6,7 @@ import StoreContext from "../context/store"
 import Cart from "./cartWindow"
 
 const Header = ({ siteTitle }) => {
-  const { customerAccessToken, isCartOpen, toggleCart } = useContext(
+  const { customerAccessToken, isCartOpen, toggleCart, checkout } = useContext(
     StoreContext
   )
   const isAuthenticated =
@@ -58,7 +58,11 @@ const Header = ({ siteTitle }) => {
           ) : (
             <Link to="/account/register">Sign Up</Link>
           )}
-          <button onClick={toggleCart}>Cart</button>
+
+          <button onClick={toggleCart}>
+            Cart <span>{checkout.lineItems.length}</span>
+          </button>
+
           {isCartOpen && <Cart />}
         </h1>
       </div>

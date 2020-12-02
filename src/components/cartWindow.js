@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Store from "../context/store"
 import Button from "../styles/buttons/buttons"
 
-const CartWindow = ({ style }) => {
+const CartWindow = () => {
   const { checkout, toggleCart, isCartOpen, removeFromCart } = useContext(Store)
 
   console.log(checkout)
@@ -24,7 +24,7 @@ const CartWindow = ({ style }) => {
                 <strong>{item.variant.price}</strong>
                 <RemoveItemButton
                   onClick={() => {
-                    removeFromCart(item.id, 1)
+                    removeFromCart(item.id)
                   }}
                 >
                   Remove

@@ -97,10 +97,10 @@ const Provider = ({ children }) => {
           )
           setCheckout(newCheckout)
         },
-        removeFromCart: async (variantId, quantity) => {
+        removeFromCart: async lineItemId => {
           const newCheckout = await store.client.checkout.removeLineItems(
             checkout.id,
-            [variantId]
+            [lineItemId]
           )
           setCheckout(newCheckout)
         },
