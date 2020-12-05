@@ -1,33 +1,12 @@
-//import { createGlobalStyle, styled } from "styled-components"
-import * as styled from "styled-components"
+import { createGlobalStyle } from "styled-components"
 
-const GlobalStyle = styled.createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   *,
   *::after,
   *::before {
     box-sizing: inherit;
     margin: 0;
     padding: 0;
-  }
-
-  :root {
-    --background: #f2fef6;
-    --surface: hsl(0, 0%, 100%);
-    --primary: #d96846;
-    --secondary: #596235;
-    --onBackground: hsl(0, 0%, 38%);
-    --onSurface: hsl(0, 0%, 13%);
-    --onPrimary: hsl(0, 0%, 97%);
-    --onSecondary: hsl(0, 0%, 7%);
-    --onHover: #7ed321;
-    --error: hsl(351, 100%, 50%);
-    --bora-large: 1rem;
-    --bora-medium: 0.5rem;
-    --bora-small: 0.25rem;
-    --shadow-1: 0 1px 1px 0 rgba(66, 66, 66, 0.04),
-      0 1px 3px 1px rgba(66, 66, 66, 0.08);
-    --shadow-2: 0 1px 1px 0 rgba(66, 66, 66, 0.08),
-      0 1px 3px 1px rgba(66, 66, 66, 0.16);
   }
 
   html {
@@ -64,8 +43,18 @@ const GlobalStyle = styled.createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overscroll-behavior-y: none;
-    background-color: var(--background);
     font-family: "Avenir";
+    background-color:${props => props.theme.background}
+  
+  }
+
+  input, label, button{
+    font-family:inherit;
   }
 `
-export default GlobalStyle
+
+export const radius = {
+  small: "0.25rem",
+  medium: "0.5rem",
+  large: "1rem",
+}

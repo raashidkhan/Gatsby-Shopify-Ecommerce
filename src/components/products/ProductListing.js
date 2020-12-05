@@ -2,7 +2,6 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import ProductCard from "./productCard"
 import styled from "styled-components"
-import { Devices } from "../../styles/mediaBreakpoint"
 
 const ProductListing = () => {
   const data = useStaticQuery(graphql`
@@ -64,10 +63,6 @@ export default ProductListing
 const ProductSection = styled.section`
   width: 100vw;
   padding: 10vw;
-
-  @media ${Devices.tab} {
-    padding: 0;
-  }
 `
 
 const ProductGrid = styled.div`
@@ -77,14 +72,4 @@ const ProductGrid = styled.div`
   grid-template-rows: auto;
   grid-auto-rows: auto;
   gap: 5vw;
-
-  @media ${Devices.tab} {
-    grid-template-columns: 90%;
-    grid-auto-columns: 90%;
-    grid-auto-flow: column;
-    overflow-x: scroll;
-    grid-template-rows: 100%;
-    gap: 0 5vw;
-    padding: 10vw 0;
-  }
 `

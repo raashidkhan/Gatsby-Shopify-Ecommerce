@@ -1,12 +1,12 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
-//import "./loader.css"
-const Loader = () => {
+
+const Loader = ({ color }) => {
   return (
     <LoaderWrapper>
-      <BounceBallOne></BounceBallOne>
-      <BounceBallTwo></BounceBallTwo>
-      <BounceBallThree></BounceBallThree>
+      <BounceBallOne color={color}></BounceBallOne>
+      <BounceBallTwo color={color}></BounceBallTwo>
+      <BounceBallThree color={color}></BounceBallThree>
     </LoaderWrapper>
   )
 }
@@ -49,10 +49,10 @@ const rotate = keyframes`
 `
 
 const LoaderWrapper = styled.div`
-  animation: ${rotate} 2s linear infinite normal;
-  height: 0.75rem;
+  animation: ${rotate} 1s linear infinite normal;
+  height: 0.65rem;
   position: relative;
-  width: 0.75rem;
+  width: 0.65rem;
 `
 
 const BounceBall = styled.div`
@@ -60,7 +60,7 @@ const BounceBall = styled.div`
   height: 100%;
   position: absolute;
   width: 100%;
-  background-color: #fff;
+  background: ${props => props.color};
 `
 
 const BounceBallOne = styled(BounceBall)`

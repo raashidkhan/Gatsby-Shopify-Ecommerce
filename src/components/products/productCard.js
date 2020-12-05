@@ -1,106 +1,86 @@
 import React, { useState, useContext } from "react"
 import styled from "styled-components"
 import Image from "gatsby-image"
-import Store from "../../context/store"
-import { Devices } from "../../styles/mediaBreakpoint"
-import Loader from "../../styles/buttons/loader"
-import CartButton from "../addToCart"
-import Button from "../../styles/buttons/buttons"
-
+import AddToCartButton from "../buttons/AddToCartButton"
+import { typeScale } from "../../utils"
 const ProductCard = props => {
-  const { buyNow } = useContext(Store)
-  const [loading, setLoading] = useState(false)
-  const handleCheckout = (productVariantId, quantity) => {
-    setLoading(true)
-    buyNow(productVariantId, quantity)
-  }
+  const [count, setCount] = useState(1)
   return (
-    <ProductCardWrapper>
-      <ProductCardImage>
-        <Image fluid={props.image} />
-      </ProductCardImage>
-      <ProjectCardDetails>
-        <p className="productCard-details--name">{props.name}</p>
-        <h2 className="productCard-details--price">₹{props.price}</h2>
-      </ProjectCardDetails>
-      <ProjectCardActions>
-        <Button width="40" primary onClick={() => handleCheckout(props.id, 1)}>
-          {loading ? <Loader /> : "Buy now"}
-        </Button>
-        <CartButton id={props.id} quantity={1} />
-      </ProjectCardActions>
-    </ProductCardWrapper>
+    <>
+      <div itemScope itemType="https://schema.org/Product">
+        <div itemProp="image">
+          <Image fluid={props.image} alt={props.name} />
+        </div>
+        <ProductName itemProp="name">{props.name}</ProductName>
+        <ProductPrice>
+          <span itemProp="priceCurrency" content="INR">
+            INR
+          </span>
+          &nbsp;
+          <span itemProp="price" content={props.price}>
+            {props.price}
+          </span>
+        </ProductPrice>
+        <div>
+          <button
+            onClick={() => {
+              count <= 0 ? setCount(0) : setCount(count - 1)
+            }}
+          >
+            -
+          </button>
+          {count}
+          <button
+            onClick={() => {
+              count >= 10 ? setCount(10) : setCount(count + 1)
+            }}
+          >
+            +
+          </button>
+        </div>
+        <AddToCartButton id={props.id} quantity={count} />
+      </div>
+    </>
   )
 }
 
 export default ProductCard
 
-const ProductCardWrapper = styled.article`
-  width: 100%;
-  background-color: var(--surface);
-  overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: 0 1px 1px 0 rgba(66, 66, 66, 0.04),
-    0 1px 3px 1px rgba(66, 66, 66, 0.08);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem;
+const ProductName = styled.h2`
+  font-size: ${typeScale.header5};
+  color: ${props => props.theme.textColor};
 `
-
-const ProductCardImage = styled.div`
-  width: 100%;
-  border-top-left-radius: var(--bora-large);
-  border-top-right-radius: var(--bora-large);
-  & div {
-    max-width: 100%;
-    height: 30rem;
-    border-radius: var(--bora-large);
-
-    @media ${Devices.mobile} {
-      height: 40rem;
-    }
-  }
+const ProductPrice = styled.h3`
+  font-size: ${typeScale.paragraph};
+  color: ${props => props.theme.primaryColor};
 `
+// <div>
+//       <Image fluid={props.image} />
+//     </div>
+//     <div>
+//       <p className="productCard-details--name">{props.name}</p>
+//       <h2 className="productCard-details--price">₹{props.price}</h2>
+//     </div>
+//     <ProjectCardActions>
+//       <div>
+//         <button
+//           onClick={() => {
+//             count <= 0 ? setCount(0) : setCount(count - 1)
+//           }}
+//         >
+//           -
+//         </button>
+//         {count}
+//         <button
+//           onClick={() => {
+//             count >= 10 ? setCount(10) : setCount(count + 1)
+//           }}
+//         >
+//           +
+//         </button>
+//       </div>
 
-const ProjectCardDetails = styled.div`
-  padding-top: 2rem;
-  display: flex;
+//       <BuyNowButton id={props.id} quantity={count} />
 
-  justify-content: space-between;
-
-  @media ${Devices.mobile} {
-    flex-direction: column;
-  }
-  & h2 {
-    font-size: 1.6rem;
-    width: 30%;
-    text-align: right;
-    color: var(--secondary);
-
-    @media ${Devices.mobile} {
-      width: 100%;
-      text-align: left;
-    }
-  }
-  & p {
-    font-size: 1.6rem;
-    width: 70%;
-    @media ${Devices.mobile} {
-      width: 100%;
-      margin-bottom: 2.5vw;
-    }
-  }
-`
-
-const ProjectCardActions = styled.div`
-  padding-top: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-
-  @media ${Devices.mobile} {
-    flex-direction: column;
-    padding-top: 0;
-  }
-`
+//       <AddToCartButton id={props.id} quantity={count} />
+//     </ProjectCardActions>

@@ -11,6 +11,7 @@ export const defaultStoreContext = {
   adding: true,
   isCartOpen: false,
   checkout: { lineItems: [] },
+  loading: false,
   //products: [],
   //shop: {},
   //filteredType: "all",

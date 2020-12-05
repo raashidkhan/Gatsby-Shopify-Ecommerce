@@ -8,6 +8,7 @@ const Provider = ({ children }) => {
   const [store, updateStore] = useState(defaultStoreContext)
   const [checkout, setCheckout] = useState(defaultStoreContext.checkout)
   const [isCartOpen, setIsCartOpen] = useState(false)
+  const [loading, setLoading] = useState(defaultStoreContext.loading)
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen)
@@ -18,6 +19,16 @@ const Provider = ({ children }) => {
       return JSON.parse(localStorage.getItem(value))
     } catch (e) {
       return ""
+    }
+  }
+  const createNewCheckout = async () => {
+    try {
+      const newCheckout = await store.client.checkout.create()
+      isBrowser &&
+        localStorage.setItem("checkout_Id", JSON.stringify(newCheckout.id))
+      return newCheckout
+    } catch (e) {
+      console.error(e)
     }
   }
 
@@ -35,14 +46,12 @@ const Provider = ({ children }) => {
         if (existingCheckoutId) {
           // if id exits , fetch id from shopify
           newCheckout = await store.client.checkout.fetch(existingCheckoutId)
-          const a = await store.client.checkout
-
-          console.log("a", a)
+          if (newCheckout.completedAt) {
+            newCheckout = await createNewCheckout()
+          }
         } else {
           //else create a new checkout id
-          newCheckout = await store.client.checkout.create()
-          isBrowser &&
-            localStorage.setItem("checkout_Id", JSON.stringify(newCheckout.id))
+          newCheckout = await createNewCheckout()
         }
         // Set id in state
         setCheckout(newCheckout)
@@ -59,6 +68,7 @@ const Provider = ({ children }) => {
         checkout,
         isCartOpen,
         toggleCart,
+        loading,
         customerAccessToken: getLocalStorage("customerAccessToken"),
         setValue: value => {
           isBrowser &&
@@ -67,7 +77,8 @@ const Provider = ({ children }) => {
             return { ...state, customerAccessToken: value }
           })
         },
-        buyNow: async (productID, quantity) => {
+        buyNow: async (productID, quantity, setIsLoading) => {
+          setIsLoading(true)
           const checkoutId = await store.client.checkout.create()
           const lineItem = [
             {
@@ -82,19 +93,22 @@ const Provider = ({ children }) => {
 
           navigate(addItem.webUrl)
         },
-        addToCart: async (variantId, quantity) => {
+        addToCart: async (variantId, quantity, setIsLoading) => {
+          setIsLoading(true)
+          console.log(variantId, quantity)
           const lineItem = [
             {
               variantId: variantId,
               quantity: quantity,
             },
           ]
-          console.log(store)
 
           const newCheckout = await store.client.checkout.addLineItems(
             checkout.id,
             lineItem
           )
+          console.log(newCheckout)
+          setIsLoading(false)
           setCheckout(newCheckout)
         },
         removeFromCart: async lineItemId => {

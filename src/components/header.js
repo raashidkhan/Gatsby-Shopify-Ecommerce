@@ -59,9 +59,7 @@ const Header = ({ siteTitle }) => {
             <Link to="/account/register">Sign Up</Link>
           )}
 
-          <button onClick={toggleCart}>
-            Cart <span>{checkout.lineItems.length}</span>
-          </button>
+          <button onClick={toggleCart}>Cart</button>
 
           {isCartOpen && <Cart />}
         </h1>

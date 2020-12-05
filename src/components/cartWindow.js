@@ -2,12 +2,10 @@ import { navigate } from "gatsby"
 import React, { useContext } from "react"
 import styled from "styled-components"
 import Store from "../context/store"
-import Button from "../styles/buttons/buttons"
 
 const CartWindow = () => {
-  const { checkout, toggleCart, isCartOpen, removeFromCart } = useContext(Store)
+  const { checkout, toggleCart, removeFromCart } = useContext(Store)
 
-  console.log(checkout)
   return (
     <Cart>
       <CloseButton onClick={toggleCart}>Close</CloseButton>
@@ -45,14 +43,7 @@ const CartWindow = () => {
         </h3>
       </CartPrice>
 
-      <Button
-        width="100"
-        onClick={() => {
-          navigate(checkout.webUrl)
-        }}
-      >
-        Checkout
-      </Button>
+      <a href={checkout.webUrl}>Checkout</a>
     </Cart>
   )
 }
@@ -105,7 +96,7 @@ const CartItemContent = styled.article`
   width: 70%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 
   h3 {
     font-size: 1.8rem;
