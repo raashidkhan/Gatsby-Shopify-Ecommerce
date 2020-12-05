@@ -10,11 +10,12 @@ const AddToCartButton = props => {
 
   return (
     <SecondaryButton
+      width="100"
       onClick={() => {
         addToCart(props.id, props.quantity, setIsLoading)
       }}
     >
-      {isLoading ? <Loader color={orange[400]} /> : "Add to cart"}
+      {isLoading ? <Loader color={orange[300]} /> : "Add to cart"}
     </SecondaryButton>
   )
 }

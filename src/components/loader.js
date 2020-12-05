@@ -51,8 +51,11 @@ const rotate = keyframes`
 const LoaderWrapper = styled.div`
   animation: ${rotate} 1s linear infinite normal;
   height: 0.65rem;
-  position: relative;
+  position: absolute;
   width: 0.65rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `
 
 const BounceBall = styled.div`

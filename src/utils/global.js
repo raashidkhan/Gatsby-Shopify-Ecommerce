@@ -44,7 +44,8 @@ export const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeLegibility;
     overscroll-behavior-y: none;
     font-family: "Avenir";
-    background-color:${props => props.theme.background}
+    background-color:${props => props.theme.background};
+    color:${props => props.theme.textColor};
   
   }
 
@@ -54,7 +55,12 @@ export const GlobalStyle = createGlobalStyle`
 `
 
 export const radius = {
-  small: "0.25rem",
-  medium: "0.5rem",
-  large: "1rem",
+  small: "0.5rem",
+  medium: "1rem",
+  large: "1.5rem",
+}
+
+export const elevation = {
+  100: "0 1px 1px 0 rgba(66, 66, 66, 0.04), 0 1px 3px 1px rgba(66, 66, 66, 0.08)",
+  200: "0 1px 1px 0 rgba(66, 66, 66, 0.08), 0 1px 3px 1px rgba(66, 66, 66, 0.16)",
 }

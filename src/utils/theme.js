@@ -19,7 +19,7 @@ export const defaultTheme = {
 
   disabled: neutral[500],
   textOnDisabled: neutral[100],
-
+  white: "#fff",
   background: neutral[100],
   surface: neutral[200],
   levelOne: neutral[300],
