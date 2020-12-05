@@ -48,6 +48,14 @@ export const GlobalStyle = createGlobalStyle`
     color:${props => props.theme.textColor};
   
   }
+  main{
+  width:100vw;
+  padding:5vw; 
+  }
+
+  img{
+    display: inline-block;
+  }
 
   input, label, button{
     font-family:inherit;

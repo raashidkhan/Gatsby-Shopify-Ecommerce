@@ -61,15 +61,14 @@ const ProductListing = () => {
 
 export default ProductListing
 const ProductSection = styled.section`
-  width: 100vw;
-  padding: 10vw;
+  width: 100%;
 `
 
 const ProductGrid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 30% 30% 30%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-auto-rows: auto;
-  gap: 5vw;
+  gap: 2.5vw;
 `

@@ -14,6 +14,10 @@ export const ProductImage = styled.div`
   overflow: hidden;
   margin-bottom: 2.4rem;
   height: 60%;
+
+  div {
+    height: 100%;
+  }
 `
 export const ProductDetails = styled.div`
   display: flex;
