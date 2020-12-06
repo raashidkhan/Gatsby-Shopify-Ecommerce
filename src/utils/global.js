@@ -46,7 +46,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Avenir";
     background-color:${props => props.theme.background};
     color:${props => props.theme.textColor};
-  
+  font-size:1.6rem;
   }
   main{
   width:100vw;
@@ -55,7 +55,13 @@ export const GlobalStyle = createGlobalStyle`
 
   img{
     display: inline-block;
+    max-width:100%;
   }
+
+ li{
+   list-style-type:none;
+ }
+ 
 
   input, label, button{
     font-family:inherit;

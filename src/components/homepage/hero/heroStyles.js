@@ -24,9 +24,13 @@ export const HeroHeaderImage = styled.div`
 export const HeroHeaderTitle = styled.h1`
   font-size: ${typeScale.header3};
   position: absolute;
-  width: 35%;
+  width: 40%;
   top: 50%;
   left: 5vw;
   transform: translateY(-50%);
   z-index: 5;
+
+  a {
+    width: 50%;
+  }
 `
