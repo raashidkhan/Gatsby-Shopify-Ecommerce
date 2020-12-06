@@ -1,10 +1,10 @@
 import { Link } from "gatsby"
 import React, { useContext, useState } from "react"
 import { useSpring, animated } from "react-spring"
-import Logout from "../components/accounts/Logout"
-import StoreContext from "../context/store"
-import Cart from "./cartWindow"
-import Logo from "../assets/logo.svg"
+import Logout from "../accounts/Logout"
+import StoreContext from "../../context/store"
+import Cart from "../cart/cartWindow"
+import Logo from "../../assets/logo.svg"
 //import Cart from "../assets/cart.svg"
 import {
   Navbar,
@@ -16,7 +16,8 @@ import {
   MobileMenuItem,
   CartButton,
   MenuCloseButton,
-} from "../utils/shared"
+} from "./headerStyles"
+
 const Header = () => {
   const { customerAccessToken, isCartOpen, toggleCart, checkout } = useContext(
     StoreContext
@@ -95,8 +96,6 @@ const Header = () => {
               <Link to="/account/register">Sign Up</Link>
             )}
           </DesktopMenuItem>
-
-          {isCartOpen && <Cart />}
         </DesktopMenu>
       </Menu>
       <CartButton onClick={toggleCart}>
@@ -151,6 +150,7 @@ const Header = () => {
           </g>
         </svg>
       </CartButton>
+      {isCartOpen && <Cart />}
       <MenuButton onClick={() => setIsOpen(true)}>Menu</MenuButton>
     </Navbar>
   )

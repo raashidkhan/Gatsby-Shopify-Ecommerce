@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { defaultTheme, GlobalStyle } from "../utils"
 import GlobalFonts from "../fonts/fonts"
-import Header from "./header"
+import Header from "./header/header"
 import { ThemeProvider } from "styled-components"
 //import "./layout.css"
 
