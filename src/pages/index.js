@@ -5,13 +5,14 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/homepage/hero/Hero"
 import Collection from "../components/homepage/collection/Collection"
+import NewArrivals from "../components/homepage/newArrivals/newArrivals"
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
     <Hero />
     <Collection />
-    <ProductListing />
+    <NewArrivals />
   </Layout>
 )
 

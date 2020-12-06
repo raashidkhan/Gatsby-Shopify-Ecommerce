@@ -57,3 +57,29 @@ export const SecondaryButton = styled(Button)`
     box-shadow: ${elevation[200]};
   }
 `
+export const InternalLinkButton = styled.span`
+  text-align: center;
+  cursor: pointer;
+  font-size: ${typeScale.header5};
+  text-decoration: none;
+  padding: 0.8rem 2.4rem;
+  display: block;
+  background-color: ${props => props.theme.primaryColor};
+  color: ${props => props.theme.textOnPrimary};
+  border: 2px solid ${props => props.theme.primaryColor};
+  box-shadow: ${elevation[100]};
+  border-radius: ${radius.medium};
+  transition: 100ms linear;
+  &:hover {
+    background-color: ${props => props.theme.primaryHoverColor};
+    color: ${props => props.theme.textOnPrimaryHoverColor};
+  }
+  &:focus {
+    outline: none;
+    transform: translateY(-4px);
+  }
+  &:active {
+    outline: 2px solid ${props => props.theme.secondaryColor};
+    outline-offset: 2px;
+  }
+`

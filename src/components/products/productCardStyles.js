@@ -6,8 +6,9 @@ export const ProductCardWrapper = styled.div`
   flex-direction: column;
   padding: 2.4rem;
   border-radius: ${radius.large};
-  background-color: ${props => props.theme.white};
-  box-shadow: ${elevation[100]};
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(15px);
+  //box-shadow: ${elevation[100]};
 `
 export const ProductImage = styled.div`
   border-radius: ${radius.large};

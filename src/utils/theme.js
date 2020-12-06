@@ -5,14 +5,14 @@ export const defaultTheme = {
 
   primaryColor: orange[400],
   textOnPrimary: neutral[900],
-  primaryHoverColor: orange[500],
+  primaryHoverColor: orange[300],
   textOnPrimaryHoverColor: neutral[800],
   primaryActiveColor: orange[300],
   textOnPrimaryActiveColor: neutral[900],
 
   secondaryColor: green[400],
   textOnSecondary: neutral[900],
-  secondaryHoverColor: green[500],
+  secondaryHoverColor: green[300],
   textOnSecondaryHoverColor: neutral[800],
   secondaryActiveColor: green[300],
   textOnSecondaryActiveColor: neutral[800],

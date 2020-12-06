@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import Image from "gatsby-image"
 import {
   ProductCollectionWrapper,
@@ -30,20 +30,22 @@ const Collection = () => {
     }
   `)
   return (
-    <ProductCollectionWrapper>
-      <CollectionItems>
-        {data.allShopifyCollection.nodes.map(item => {
-          return (
-            <CollectionItemDetails key={item.shopifyId}>
-              <CollectionItemImage>
-                <Image fluid={item.image.localFile.childImageSharp.fluid} />
-              </CollectionItemImage>
-              <CollectionItemName>{item.title}</CollectionItemName>
-            </CollectionItemDetails>
-          )
-        })}
-      </CollectionItems>
-    </ProductCollectionWrapper>
+    <Link to="#">
+      <ProductCollectionWrapper>
+        <CollectionItems>
+          {data.allShopifyCollection.nodes.map(item => {
+            return (
+              <CollectionItemDetails key={item.shopifyId}>
+                <CollectionItemImage>
+                  <Image fluid={item.image.localFile.childImageSharp.fluid} />
+                </CollectionItemImage>
+                <CollectionItemName>{item.title}</CollectionItemName>
+              </CollectionItemDetails>
+            )
+          })}
+        </CollectionItems>
+      </ProductCollectionWrapper>
+    </Link>
   )
 }
 

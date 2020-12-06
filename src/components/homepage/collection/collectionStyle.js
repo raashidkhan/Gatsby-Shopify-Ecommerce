@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { typeScale, neutral, radius } from "../../../utils"
 export const ProductCollectionWrapper = styled.section`
   width: 100%;
-  margin-bottom: 5vw;
+  margin-bottom: 10vw;
 `
 
 export const CollectionItems = styled.div`
@@ -33,7 +33,7 @@ export const CollectionItemName = styled.figcaption`
   z-index: 5;
   font-size: ${typeScale.header4};
   background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(10px);
   padding: 1.6rem;
   color: ${neutral[800]};
   font-family: inherit;
