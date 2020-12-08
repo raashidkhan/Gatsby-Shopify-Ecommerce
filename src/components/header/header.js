@@ -37,9 +37,9 @@ const Header = () => {
 
   return (
     <Navbar>
-      <div className="logo">
+      <Link to="/" className="logo">
         <img style={{ display: "block" }} src={Logo} alt="" />
-      </div>
+      </Link>
       <Menu>
         <animated.div style={animation}>
           <MobileMenu>

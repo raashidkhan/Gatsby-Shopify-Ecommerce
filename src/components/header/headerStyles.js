@@ -12,7 +12,7 @@ export const Navbar = styled.nav`
   left: 0;
   height: 5vw;
   z-index: 100;
-  background-color: ${props => props.theme.background};
+  //background-color: ${props => props.theme.background};
   /* background-color: hsla(13, 70%, 100%, 0.4);
   backdrop-filter: blur(15px); */
   @media ${Devices.tab} {

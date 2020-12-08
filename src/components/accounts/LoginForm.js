@@ -11,6 +11,8 @@ import {
   typeScale,
   InternalLinkButton,
   SecondaryButton,
+  red,
+  neutral,
 } from "../../utils"
 import styled from "styled-components"
 
@@ -65,17 +67,27 @@ const LoginForm = ({ messageInfo, setPasswordForgot }) => {
                 />
               </FormLabel>
               <FormLabel
-                style={{ marginBottom: "1.2rem" }}
                 htmlFor="forgotPassword"
                 onClick={passwordForgot => {
                   setPasswordForgot(true)
                 }}
               >
-                Forgot Password?
+                <span
+                  style={{
+                    fontSize: "1.4rem",
+                    marginTop: "-1.2rem",
+                    display: "block",
+                  }}
+                >
+                  {" "}
+                  Forgot Password?
+                </span>
               </FormLabel>
-              <p>{incorrectUserMessage}</p>
+              <IncorrectMessage message={incorrectUserMessage}>
+                {incorrectUserMessage}
+              </IncorrectMessage>
               <SecondaryButton
-                style={{ marginBottom: "1.2rem" }}
+                style={{ marginTop: "2.4rem" }}
                 type="submit"
                 onClick={e => {
                   e.preventDefault()
@@ -109,9 +121,6 @@ const LoginForm = ({ messageInfo, setPasswordForgot }) => {
               >
                 SIGN IN
               </SecondaryButton>
-              <InternalLinkButton>
-                <Link to="/account/register">Register</Link>
-              </InternalLinkButton>
             </Form>
           )
         }}
@@ -123,17 +132,20 @@ const LoginForm = ({ messageInfo, setPasswordForgot }) => {
 export default LoginForm
 
 const Form = styled.form`
-  padding: 5vw;
+  padding: 5vw 0;
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  border-radius: ${radius.large};
-  box-shadow: ${elevation[200]};
 `
 const FormHeading = styled.h2`
   font-size: ${typeScale.header3};
   margin-bottom: 1.9rem;
   text-align: center;
+`
+const IncorrectMessage = styled.p`
+  display: ${props => (props.message === null ? "none" : "inline-block")};
+  padding: 0.5rem;
+  background-color: ${red[100]};
+  align-self: flex-start;
+  color: ${neutral[100]};
+  border-radius: ${radius.medium};
 `

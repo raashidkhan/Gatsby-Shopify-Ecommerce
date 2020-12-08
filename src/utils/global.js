@@ -48,10 +48,7 @@ export const GlobalStyle = createGlobalStyle`
     color:${props => props.theme.textColor};
   font-size:1.6rem;
   }
-  main{
-  width:100vw;
-  padding:5vw; 
-  }
+
 
   img{
     display: inline-block;

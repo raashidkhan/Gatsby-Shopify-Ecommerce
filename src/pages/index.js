@@ -1,19 +1,25 @@
 import React from "react"
-import { Link } from "gatsby"
 import ProductListing from "../components/products/ProductListing"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/homepage/hero/Hero"
 import Collection from "../components/homepage/collection/Collection"
 import NewArrivals from "../components/homepage/newArrivals/newArrivals"
+import styled from "styled-components"
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
-    <Hero />
-    <Collection />
-    <NewArrivals />
+    <PageWrapper>
+      <Hero />
+      <Collection />
+      <NewArrivals />
+    </PageWrapper>
   </Layout>
 )
 
 export default IndexPage
+const PageWrapper = styled.div`
+  width: 100vw;
+  padding: 5vw;
+  padding-bottom: 0;
+`

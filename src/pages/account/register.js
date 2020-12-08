@@ -5,6 +5,7 @@ import AccountLayout from "../../components/accounts/AccountLayout"
 import { navigate } from "gatsby"
 import { Link } from "gatsby"
 import styled from "styled-components"
+import SignUpImage from "../../assets/sign-up-image.jpg"
 import {
   radius,
   elevation,
@@ -38,28 +39,32 @@ const RegisterForm = () => {
   const [password, setPassword] = useState(null)
 
   return (
-    <>
+    <FormWrapper>
       <Mutation mutation={CUSTOMER_REGISTER}>
         {customerRegister => {
           return (
             <Form>
-              <FormHeading>Register</FormHeading>
-              <FormLabel htmlFor="firstName">
-                First Name
-                <FormInput
-                  type="text"
-                  htmlFor="firstName"
-                  onChange={e => setFirstName(e.target.value)}
-                />
-              </FormLabel>
-              <FormLabel htmlFor="lastName">
-                Last Name
-                <FormInput
-                  type="text"
-                  htmlFor="lastName"
-                  onChange={e => setLastName(e.target.value)}
-                />
-              </FormLabel>
+              <FormHeading>Sign up for a new account</FormHeading>
+
+              <NameLabel>
+                <FormLabel htmlFor="firstName">
+                  First Name
+                  <FormInput
+                    type="text"
+                    htmlFor="firstName"
+                    onChange={e => setFirstName(e.target.value)}
+                  />
+                </FormLabel>
+                <FormLabel htmlFor="lastName">
+                  Last Name
+                  <FormInput
+                    type="text"
+                    htmlFor="lastName"
+                    onChange={e => setLastName(e.target.value)}
+                  />
+                </FormLabel>
+              </NameLabel>
+
               <FormLabel htmlFor="email">
                 Email
                 <FormInput
@@ -68,7 +73,7 @@ const RegisterForm = () => {
                   onChange={e => setEmail(e.target.value)}
                 />
               </FormLabel>
-              <FormLabel htmlFor="password" style={{ marginBottom: "1.2rem" }}>
+              <FormLabel htmlFor="password">
                 Password
                 <FormInput
                   type="password"
@@ -77,7 +82,7 @@ const RegisterForm = () => {
                 />
               </FormLabel>
               <PrimaryButton
-                style={{ marginBottom: "1.2rem" }}
+                style={{ marginTop: "2.4rem" }}
                 className="button"
                 onClick={e => {
                   e.preventDefault()
@@ -101,14 +106,11 @@ const RegisterForm = () => {
               >
                 REGISTER
               </PrimaryButton>
-              <InternalLinkButton>
-                <Link to="/account/login">Sign In</Link>
-              </InternalLinkButton>
             </Form>
           )
         }}
       </Mutation>
-    </>
+    </FormWrapper>
   )
 }
 
@@ -116,11 +118,15 @@ const Register = () => {
   return (
     <Layout>
       <AccountLayout>
-        <LoginPageWrapper>
-          <div>
-            <RegisterForm />
-          </div>
-        </LoginPageWrapper>
+        <SignUpPageWrapper>
+          <SignUpImageWrapper>
+            <h3>already have an account?</h3>
+            <InternalLinkButton>
+              <Link to="/account/login">Log In</Link>
+            </InternalLinkButton>
+          </SignUpImageWrapper>
+          <RegisterForm />
+        </SignUpPageWrapper>
       </AccountLayout>
     </Layout>
   )
@@ -128,48 +134,52 @@ const Register = () => {
 
 export default Register
 
-const LoginPageWrapper = styled.section`
+const SignUpPageWrapper = styled.section`
   width: 100%;
   display: flex;
   overflow: hidden;
   justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  padding: 5vw;
+  align-items: stretch;
+  height: 100vh;
   position: relative;
-  background-image: url("https://images.unsplash.com/photo-1526796836-4da91257199a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80");
+  //z-index: -5;
+`
+const SignUpImageWrapper = styled.div`
+  width: 45%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url(${SignUpImage});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  border-radius: ${radius.large};
-  //z-index: -5;
 
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    backdrop-filter: blur(15px) hue-rotate(30deg) saturate(120%);
-  }
-  div {
-    position: relative;
-    z-index: 10;
+  h3 {
+    font-weight: 400;
+    margin-bottom: 2.4rem;
   }
 `
-const Form = styled.form`
+
+const FormWrapper = styled.div`
+  width: 55%;
   padding: 5vw;
+`
+
+const Form = styled.form`
+  padding: 5vw 0;
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  border-radius: ${radius.large};
-  box-shadow: ${elevation[200]};
 `
 const FormHeading = styled.h2`
-  font-size: ${typeScale.header3};
-  margin-bottom: 1.9rem;
+  font-size: ${typeScale.header4};
+  margin-bottom: 2.5vw;
   text-align: center;
+`
+
+const NameLabel = styled.div`
+  display: flex;
+  justify-content: space-between;
+  //margin-bottom: 2.4rem;
 `
