@@ -13,7 +13,6 @@ const ProductDetails = ({
   price,
   available,
 }) => {
-  console.log(id)
   const [count, setCount] = useState(1)
   return (
     <ProductSection>

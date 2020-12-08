@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Link } from "gatsby"
 import { typeScale, neutral, radius } from "../../../utils"
 export const ProductCollectionWrapper = styled.section`
   width: 100%;
@@ -11,7 +12,7 @@ export const CollectionItems = styled.div`
   grid-template-rows: 1fr;
   gap: 5vw;
 `
-export const CollectionItemDetails = styled.figure`
+export const CollectionItemDetails = styled(Link)`
   width: 100%;
   position: relative;
   border-radius: ${radius.large};

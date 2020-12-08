@@ -8,6 +8,7 @@ exports.createPages = async ({ graphql, actions }) => {
         nodes {
           handle
           shopifyId
+          productType
         }
       }
       allShopifyCollection {
@@ -25,6 +26,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`src/templates/ProductPage.js`),
       context: {
         slug: item.handle,
+        type: item.productType,
       },
     })
   })

@@ -17,7 +17,10 @@ const ProductPage = ({ data }) => {
         price={product.variants[0].price}
         available={product.variants[0].availableForSale}
       />
-      <RelatedProducts />
+      <RelatedProducts
+        related={data.allShopifyProduct.edges}
+        current={product.id}
+      />
     </Layout>
   )
 }
@@ -25,7 +28,29 @@ const ProductPage = ({ data }) => {
 export default ProductPage
 
 export const query = graphql`
-  query($slug: String!) {
+  query($slug: String!, $type: String!) {
+    allShopifyProduct(filter: { productType: { eq: $type } }) {
+      edges {
+        node {
+          id
+          handle
+          title
+          productType
+          images {
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
+                }
+              }
+            }
+          }
+          variants {
+            price
+          }
+        }
+      }
+    }
     shopifyProduct(handle: { eq: $slug }) {
       handle
       id
@@ -35,6 +60,7 @@ export const query = graphql`
       description
       descriptionHtml
       shopifyId
+      productType
       options {
         id
         name

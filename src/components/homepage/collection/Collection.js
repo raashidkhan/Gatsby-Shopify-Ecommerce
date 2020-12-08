@@ -16,6 +16,7 @@ const Collection = () => {
         nodes {
           title
           shopifyId
+          handle
           image {
             localFile {
               childImageSharp {
@@ -30,12 +31,15 @@ const Collection = () => {
     }
   `)
   return (
-    <Link to="#">
+    <>
       <ProductCollectionWrapper>
         <CollectionItems>
           {data.allShopifyCollection.nodes.map(item => {
             return (
-              <CollectionItemDetails key={item.shopifyId}>
+              <CollectionItemDetails
+                to={`/collection/${item.handle}`}
+                key={item.shopifyId}
+              >
                 <CollectionItemImage>
                   <Image fluid={item.image.localFile.childImageSharp.fluid} />
                 </CollectionItemImage>
@@ -45,7 +49,7 @@ const Collection = () => {
           })}
         </CollectionItems>
       </ProductCollectionWrapper>
-    </Link>
+    </>
   )
 }
 

@@ -1,10 +1,9 @@
 import React from "react"
-import ProductListing from "../components/products/ProductListing"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/homepage/hero/Hero"
 import Collection from "../components/homepage/collection/Collection"
-import NewArrivals from "../components/homepage/newArrivals/newArrivals"
+import NewArrivals from "../components/homepage/newArrivals/NewArrivals"
 import styled from "styled-components"
 
 const IndexPage = () => (

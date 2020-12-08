@@ -61,17 +61,3 @@ export const NewArrivalGrid = styled.div`
     grid-area: all-product;
   } */
 `
-
-export const AllProduct = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: stretch;
-  align-items: center;
-  //padding: 2.4rem;
-
-  a {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-`

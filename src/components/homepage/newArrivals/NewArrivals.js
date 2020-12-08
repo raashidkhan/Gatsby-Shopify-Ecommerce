@@ -1,52 +1,54 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import ProductCard from "../../products/productCard"
-import { InternalLinkButton } from "../../../utils"
 import {
   NewArrivalWrapper,
   HeadingWrapper,
   NewArrivalHeading,
   NewArrivalSubHeading,
   NewArrivalGrid,
-  AllProduct,
 } from "./newArrivalsStyle"
 const NewArrivals = () => {
   const data = useStaticQuery(graphql`
-    {
+    query {
       allShopifyProduct {
-        nodes {
-          id
-          description
-          title
-          handle
-          images {
-            localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+        edges {
+          node {
+            id
+            title
+            handle
+            createdAt(fromNow: true)
+            publishedAt
+            productType
+            vendor
+            priceRange {
+              maxVariantPrice {
+                amount
               }
             }
-          }
-          variants {
-            id
-            price
-            title
-            shopifyId
-            image {
+            images {
+              originalSrc
+              id
               localFile {
                 childImageSharp {
                   fluid {
-                    ...GatsbyImageSharpFluid
+                    ...GatsbyImageSharpFluid_withWebp_noBase64
                   }
                 }
               }
+            }
+            variants {
+              id
+              title
+              price
+              shopifyId
             }
           }
         }
       }
     }
   `)
+
   return (
     <NewArrivalWrapper>
       <HeadingWrapper>
@@ -57,23 +59,18 @@ const NewArrivals = () => {
         </NewArrivalSubHeading>
       </HeadingWrapper>
       <NewArrivalGrid>
-        {data.allShopifyProduct.nodes.slice(0, 6).map(item => {
+        {data.allShopifyProduct.edges.slice(0, 6).map(item => {
           return (
             <ProductCard
-              key={item.id}
-              image={item.images[0].localFile.childImageSharp.fluid}
-              name={item.title}
-              price={item.variants[0].price}
-              id={item.variants[0].shopifyId}
-              link={item.handle}
+              key={item.node.id}
+              image={item.node.images[0].localFile.childImageSharp.fluid}
+              name={item.node.title}
+              price={item.node.variants[0].price}
+              id={item.node.variants[0].shopifyId}
+              link={item.node.handle}
             />
           )
         })}
-        {/* <AllProduct>
-          <Link>
-            <InternalLinkButton>View All</InternalLinkButton>
-          </Link>
-        </AllProduct> */}
       </NewArrivalGrid>
     </NewArrivalWrapper>
   )
