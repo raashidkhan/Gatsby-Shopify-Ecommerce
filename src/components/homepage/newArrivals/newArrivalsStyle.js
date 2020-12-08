@@ -4,7 +4,8 @@ export const NewArrivalWrapper = styled.section`
   width: 100%;
   margin-bottom: 10vw;
   padding: 5vw;
-  background: linear-gradient(67deg, ${orange[100]}, ${green[100]});
+  //background: linear-gradient(67deg, ${orange[100]}, ${green[100]});
+  background-color: ${props => props.theme.levelOne};
   border-radius: ${radius.large};
   overflow: hidden;
 `

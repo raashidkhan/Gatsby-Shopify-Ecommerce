@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { neutral, typeScale, radius } from "../../../utils"
+import { typeScale, radius } from "../../../utils"
 export const HeroHeader = styled.header`
   width: 100%;
   height: 60vh;
@@ -29,8 +29,8 @@ export const HeroHeaderTitle = styled.h1`
   left: 5vw;
   transform: translateY(-50%);
   z-index: 5;
-
-  a {
-    width: 50%;
+  span {
+    display: block;
+    margin-bottom: 2.4rem;
   }
 `

@@ -1,6 +1,4 @@
 import React, { useState, useContext } from "react"
-import { withTheme } from "styled-components"
-import styled from "styled-components"
 import Image from "gatsby-image"
 import AddToCartButton from "../buttons/AddToCartButton"
 import {
@@ -12,6 +10,7 @@ import {
   CounterButton,
   CounterButtonWrapper,
 } from "./productCardStyles"
+import { SecondarySolidButton } from "../../utils"
 const ProductCard = props => {
   const [count, setCount] = useState(1)
 
@@ -51,8 +50,9 @@ const ProductCard = props => {
             </CounterButton>
           </CounterButtonWrapper>
         </ProductDetails>
-
-        <AddToCartButton id={props.id} quantity={count} />
+        <SecondarySolidButton width="100">
+          <AddToCartButton id={props.id} quantity={count} />
+        </SecondarySolidButton>
       </ProductCardWrapper>
     </>
   )

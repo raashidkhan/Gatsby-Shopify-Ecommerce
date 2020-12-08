@@ -12,8 +12,8 @@ import {
   typeScale,
   FormInput,
   FormLabel,
-  PrimaryButton,
-  InternalLinkButton,
+  SecondarySolidButton,
+  PrimarySolidButton,
 } from "../../utils"
 import Layout from "../../components/layout"
 
@@ -81,7 +81,7 @@ const RegisterForm = () => {
                   onChange={e => setPassword(e.target.value)}
                 />
               </FormLabel>
-              <PrimaryButton
+              <SecondarySolidButton
                 style={{ marginTop: "2.4rem" }}
                 className="button"
                 onClick={e => {
@@ -105,7 +105,7 @@ const RegisterForm = () => {
                 }}
               >
                 REGISTER
-              </PrimaryButton>
+              </SecondarySolidButton>
             </Form>
           )
         }}
@@ -121,9 +121,9 @@ const Register = () => {
         <SignUpPageWrapper>
           <SignUpImageWrapper>
             <h3>already have an account?</h3>
-            <InternalLinkButton>
-              <Link to="/account/login">Log In</Link>
-            </InternalLinkButton>
+            <Link to="/account/login">
+              <PrimarySolidButton>Log in</PrimarySolidButton>
+            </Link>
           </SignUpImageWrapper>
           <RegisterForm />
         </SignUpPageWrapper>

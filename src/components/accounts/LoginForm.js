@@ -10,7 +10,7 @@ import {
   elevation,
   typeScale,
   InternalLinkButton,
-  SecondaryButton,
+  SecondarySolidButton,
   red,
   neutral,
 } from "../../utils"
@@ -86,7 +86,7 @@ const LoginForm = ({ messageInfo, setPasswordForgot }) => {
               <IncorrectMessage message={incorrectUserMessage}>
                 {incorrectUserMessage}
               </IncorrectMessage>
-              <SecondaryButton
+              <SecondarySolidButton
                 style={{ marginTop: "2.4rem" }}
                 type="submit"
                 onClick={e => {
@@ -120,7 +120,7 @@ const LoginForm = ({ messageInfo, setPasswordForgot }) => {
                 }}
               >
                 SIGN IN
-              </SecondaryButton>
+              </SecondarySolidButton>
             </Form>
           )
         }}

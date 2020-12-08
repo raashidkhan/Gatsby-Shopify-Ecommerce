@@ -5,7 +5,7 @@ import Layout from "../../components/layout"
 import LoginForm from "../../components/accounts/LoginForm"
 import ForgotPasswordForm from "../../components/accounts/ForgetPasswordForm"
 import styled from "styled-components"
-import { radius, InternalLinkButton } from "../../utils"
+import { radius, PrimarySolidButton } from "../../utils"
 import LogInImage from "../../assets/login-image.jpg"
 const Login = ({ location }) => {
   console.log(location)
@@ -17,9 +17,9 @@ const Login = ({ location }) => {
         <LoginPageWrapper>
           <LogInImageWrapper>
             <h3>don't have an account?</h3>
-            <InternalLinkButton>
-              <Link to="/account/register">Sign up now!</Link>
-            </InternalLinkButton>
+            <Link to="/account/register">
+              <PrimarySolidButton>Sign up now!</PrimarySolidButton>
+            </Link>
           </LogInImageWrapper>
 
           <Form>
