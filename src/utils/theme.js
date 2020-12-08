@@ -4,9 +4,9 @@ export const defaultTheme = {
   textColor: neutral[700],
 
   primaryColor: orange[400],
-  textOnPrimary: neutral[900],
+  textOnPrimary: neutral[100],
   primaryHoverColor: orange[300],
-  textOnPrimaryHoverColor: neutral[100],
+  textOnPrimaryHoverColor: neutral[200],
   primaryActiveColor: orange[300],
   textOnPrimaryActiveColor: neutral[900],
 
@@ -32,8 +32,8 @@ export const defaultTheme = {
     errorColor: red[100],
     errorColorHover: red[200],
     errorColorActive: red[300],
-    successColor: green[100],
-    successColorHover: green[200],
+    successColor: green[200],
+    successColorHover: green[300],
     successColorActive: green[300],
   },
 }

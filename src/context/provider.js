@@ -11,6 +11,7 @@ const Provider = ({ children }) => {
   const [loading, setLoading] = useState(defaultStoreContext.loading)
 
   const toggleCart = () => {
+    console.log("cart")
     setIsCartOpen(!isCartOpen)
   }
 

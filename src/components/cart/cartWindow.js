@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import Store from "../../context/store"
+import styled from "styled-components"
 import {
   Cart,
   CartItemContent,
@@ -11,7 +12,7 @@ import {
   RemoveItemButton,
   CartHeading,
 } from "./cartWindowStyles"
-import { InternalLinkButton } from "../../utils"
+import { PrimarySolidButton } from "../../utils"
 const CartWindow = () => {
   const { checkout, toggleCart, removeFromCart } = useContext(Store)
 
@@ -19,7 +20,11 @@ const CartWindow = () => {
     <Cart>
       <CartHeading>
         <h3>Your Cart</h3>
-        <CloseButton onClick={toggleCart}>
+        <CloseButton
+          title="Close Cart"
+          aria-label="Close cart"
+          onClick={toggleCart}
+        >
           <span className="one"></span>
           <span className="two"></span>
         </CloseButton>
@@ -36,14 +41,17 @@ const CartWindow = () => {
               <CartItemContent>
                 <p>{item.title}</p>
                 <strong>{item.variant.price}</strong>
-                <RemoveItemButton
-                  onClick={() => {
-                    removeFromCart(item.id)
-                  }}
-                >
-                  Remove
-                </RemoveItemButton>
               </CartItemContent>
+              <RemoveItemButton
+                title="Remove Item"
+                aria-label="Remove Item"
+                onClick={() => {
+                  removeFromCart(item.id)
+                }}
+              >
+                <span className="one"></span>
+                <span className="two"></span>
+              </RemoveItemButton>
             </CartItemWrapper>
           )
         })}
@@ -58,11 +66,16 @@ const CartWindow = () => {
           <span> {checkout.totalPrice}</span>
         </h3>
       </CartPrice>
-      <InternalLinkButton>
-        <a href={checkout.webUrl}>Checkout</a>
-      </InternalLinkButton>
+      <PrimarySolidButton width="100">
+        <CheckoutLink href={checkout.webUrl}>Checkout</CheckoutLink>
+      </PrimarySolidButton>
     </Cart>
   )
 }
 
 export default CartWindow
+
+const CheckoutLink = styled.a`
+  width: 100%;
+  display: block;
+`

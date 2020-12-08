@@ -131,12 +131,15 @@ export const CartButton = styled.button`
   bottom: 5vw;
   right: 5vw;
   border: none;
-  background-color: ${props => props.theme.primaryColor};
+  background-color: ${props => props.theme.primaryHoverColor};
   padding: 1.6rem;
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   box-sizing: content-box;
   border-radius: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   svg {
     width: 100%;

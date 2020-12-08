@@ -18,6 +18,7 @@ const NewArrivals = () => {
           id
           description
           title
+          handle
           images {
             localFile {
               childImageSharp {
@@ -64,6 +65,7 @@ const NewArrivals = () => {
               name={item.title}
               price={item.variants[0].price}
               id={item.variants[0].shopifyId}
+              link={item.handle}
             />
           )
         })}

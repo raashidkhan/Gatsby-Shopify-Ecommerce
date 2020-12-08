@@ -7,6 +7,7 @@ import {
   radius,
   typeScale,
   Devices,
+  neutral,
 } from "../../utils"
 export const Cart = styled.aside`
   position: fixed;
@@ -20,9 +21,15 @@ export const Cart = styled.aside`
   padding: 2.4rem;
   border-top-left-radius: ${radius.large};
   border-bottom-left-radius: ${radius.large};
-  background-color: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(15px);
+  background-color: ${props => props.theme.background};
 
+  @supports (
+    (-webkit-backdrop-filter: blur(15px)) or (backdrop-filter: blur(15px))
+  ) {
+    background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+  }
   @media ${Devices.mobile} {
     width: 100vw;
   }
@@ -38,8 +45,8 @@ export const CartHeading = styled.div`
 export const CloseButton = styled.button`
   display: block;
   background: none;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2rem;
+  height: 2rem;
   border: none;
   position: relative;
   cursor: pointer;
@@ -51,7 +58,7 @@ export const CloseButton = styled.button`
     transform: translate(-50%, -50%) rotate(0);
     width: 100%;
     height: 3px;
-    background-color: ${red[300]};
+    background-color: ${red[100]};
   }
 
   span.one {
@@ -68,10 +75,19 @@ export const CartWrapper = styled.div`
   overflow-y: auto;
   //box-shadow: ${elevation[100]};
   //background-color: ${props => props.theme.surface};
-  background-color: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
+
   border-radius: ${radius.large};
   padding: 2.4rem;
+
+  background-color: ${props => props.theme.surface};
+
+  @supports (
+    (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))
+  ) {
+    background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
 
   &::-webkit-scrollbar {
     width: 0.6rem;
@@ -79,31 +95,42 @@ export const CartWrapper = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: ${props => props.theme.primaryColor};
+    background-color: ${neutral[400]};
     border-radius: 0.3rem;
   }
 `
 export const CartItemWrapper = styled.article`
-  display: flex;
   margin: 1.2rem auto;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
+  display: grid;
+  grid-template-columns: 0.8fr 2fr 0.25fr;
+  gap: 2rem;
+
+  background-color: ${props => props.theme.background};
   border-radius: ${radius.medium};
   padding: 2rem;
   position: relative;
   box-shadow: ${elevation[100]};
+
+  @supports (
+    (-webkit-backdrop-filter: blur(5px)) or (backdrop-filter: blur(5px))
+  ) {
+    background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
 `
 export const CartItemContent = styled.article`
-  width: 70%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  //flex-wrap: wrap;
+
+  p {
+    width: 100%;
+  }
 `
 
 export const CartItemImage = styled.div`
-  width: 7.5rem;
   position: relative;
   p {
     position: absolute;
@@ -115,13 +142,35 @@ export const CartItemImage = styled.div`
     line-height: 0.5;
     display: inline;
     font-weight: 700;
-    background-color: ${props => props.theme.primaryColor};
-    color: ${props => props.theme.textOnPrimaryColor};
+    background-color: ${props => props.theme.status.successColor};
+    //color: ${props => props.theme.textOnSecondaryColor};
   }
   img {
     max-width: 100%;
     display: block;
     border-radius: ${radius.medium};
+  }
+`
+
+export const RemoveItemButton = styled(CloseButton)`
+  cursor: pointer;
+  align-self: center;
+  margin-left: auto;
+  display: block;
+  padding: 0.4rem 0.8rem;
+  background: none;
+  transition: 100ms ease;
+  &:hover {
+    transform: translateY(-2px);
+    color: white;
+  }
+
+  &:focus {
+    transform: translateY(-2px);
+    outline: none;
+  }
+  &:active {
+    transform: translateY(0);
   }
 `
 export const CartPrice = styled.div`
@@ -145,28 +194,5 @@ export const CartPrice = styled.div`
     justify-content: space-between;
     align-items: flex-start;
     color: hsl(0, 0%, 28%);
-  }
-`
-
-export const RemoveItemButton = styled.button`
-  cursor: pointer;
-  display: block;
-  padding: 0.4rem 0.8rem;
-  background: none;
-  font-size: ${typeScale.helperText};
-  border: 1px solid ${red[100]};
-  transition: 100ms ease;
-  &:hover {
-    transform: translateY(-2px);
-    background: ${red[100]};
-    color: white;
-  }
-
-  &:focus {
-    transform: translateY(-2px);
-    outline: none;
-  }
-  &:active {
-    transform: translateY(0);
   }
 `

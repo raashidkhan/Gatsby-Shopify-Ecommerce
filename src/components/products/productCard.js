@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react"
 import Image from "gatsby-image"
 import AddToCartButton from "../buttons/AddToCartButton"
+import { Link } from "gatsby"
 import {
   ProductCardWrapper,
   ProductName,
@@ -17,7 +18,11 @@ const ProductCard = props => {
   return (
     <>
       <ProductCardWrapper itemScope itemType="https://schema.org/Product">
-        <ProductImage itemProp="image">
+        <ProductImage
+          itemProp="image"
+          to={`/product/${props.link}`}
+          title="View"
+        >
           <Image fluid={props.image} alt={props.name} />
         </ProductImage>
         <ProductName itemProp="name">{props.name}</ProductName>

@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import styled from "styled-components"
 import { radius, typeScale, Button, elevation } from "../../utils"
 
@@ -10,7 +11,7 @@ export const ProductCardWrapper = styled.div`
   backdrop-filter: blur(15px);
   //box-shadow: ${elevation[100]};
 `
-export const ProductImage = styled.div`
+export const ProductImage = styled(Link)`
   border-radius: ${radius.large};
   overflow: hidden;
   margin-bottom: 2.4rem;
