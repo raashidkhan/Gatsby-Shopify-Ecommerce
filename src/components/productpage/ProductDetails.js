@@ -3,7 +3,7 @@ import styled from "styled-components"
 import Image from "gatsby-image"
 import AddToCartButton from "../buttons/AddToCartButton"
 import { radius, typeScale, SecondarySolidButton } from "../../utils"
-
+import CounterButton from "../buttons/CounterButtons"
 const ProductDetails = ({
   link,
   id,
@@ -27,24 +27,10 @@ const ProductDetails = ({
           {price}
         </h3>
         <p>{available ? "In Stock" : "Out of Stock"}</p>
-        <CounterButtonWrapper>
-          <span>Quantity: </span>
-          <CounterButton
-            onClick={() => {
-              count <= 0 ? setCount(0) : setCount(count - 1)
-            }}
-          >
-            <strong>-</strong>
-          </CounterButton>
-          {count}
-          <CounterButton
-            onClick={() => {
-              count >= 10 ? setCount(10) : setCount(count + 1)
-            }}
-          >
-            <strong>+</strong>
-          </CounterButton>
-        </CounterButtonWrapper>
+        <QuantityCounter>
+          <p>Quantity:</p>
+          <CounterButton count={count} setCount={setCount} />
+        </QuantityCounter>
 
         <SecondarySolidButton width="100">
           <AddToCartButton id={id} quantity={count} />
@@ -89,14 +75,14 @@ const ProductDesc = styled.div`
   padding-left: 5vw;
   padding-top: 5vw;
 
-  h1 {
+  & > h1 {
     font-size: ${typeScale.header3};
     font-weight: 400;
     margin-bottom: 1.4rem;
     width: 70%;
   }
 
-  h3 {
+  & > h3 {
     font-size: ${typeScale.header5};
     color: ${props => props.theme.primaryColor};
     margin-bottom: 1.05rem;
@@ -108,7 +94,7 @@ const ProductDesc = styled.div`
     }
   }
 
-  p {
+  & > p {
     padding: 0.5rem 1rem;
     font-size: ${typeScale.paragraph};
     display: inline-block;
@@ -120,7 +106,7 @@ const ProductDesc = styled.div`
     margin-bottom: 0.8rem;
   }
 
-  article {
+  & > article {
     margin-top: 2.5vw;
 
     h4 {
@@ -129,38 +115,12 @@ const ProductDesc = styled.div`
     }
   }
 `
-
-export const CounterButtonWrapper = styled.div`
-  margin: 2.4rem 0;
-  width: 30%;
+const QuantityCounter = styled.div`
   display: flex;
+  margin: 2.4rem 0;
   justify-content: space-between;
-  align-items: center;
-  font-size: ${typeScale.paragraph};
-`
 
-export const CounterButton = styled.button`
-  padding: 0.4rem;
-  line-height: 1;
-
-  width: 3rem;
-  height: 3rem;
-  background: none;
-  color: ${props => props.theme.textColor};
-  border: 1px solid ${props => props.theme.secondaryColor};
-  border-radius: ${radius.small};
-  transition: 100ms ease;
-  &:hover {
-    background: ${props => props.theme.secondaryHoverColor};
-    color: ${props => props.theme.textOnSecondaryHoverColor};
-    transform: translateY(-1.5px);
-  }
-  &:focus {
-    outline: none;
-    transform: translateY(-1.5px);
-  }
-
-  &:active {
-    transform: translateY(0);
+  & > p {
+    font-size: ${typeScale.header5};
   }
 `

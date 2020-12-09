@@ -44,6 +44,7 @@ const RelatedSection = styled.section`
 
   h2 {
     margin-bottom: 2.4rem;
+    font-weight: 400;
   }
 `
 const RelatedProductWrapper = styled.div`

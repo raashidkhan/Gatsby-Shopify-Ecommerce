@@ -2,14 +2,13 @@ import React, { useState, useContext } from "react"
 import Image from "gatsby-image"
 import AddToCartButton from "../buttons/AddToCartButton"
 import { Link } from "gatsby"
+import Counter from "../buttons/CounterButtons"
 import {
   ProductCardWrapper,
   ProductName,
   ProductImage,
   ProductDetails,
   ProductPrice,
-  CounterButton,
-  CounterButtonWrapper,
 } from "./productCardStyles"
 import { SecondarySolidButton } from "../../utils"
 const ProductCard = props => {
@@ -37,23 +36,7 @@ const ProductCard = props => {
               {props.price}
             </span>
           </ProductPrice>
-          <CounterButtonWrapper>
-            <CounterButton
-              onClick={() => {
-                count <= 0 ? setCount(0) : setCount(count - 1)
-              }}
-            >
-              <strong>-</strong>
-            </CounterButton>
-            {count}
-            <CounterButton
-              onClick={() => {
-                count >= 10 ? setCount(10) : setCount(count + 1)
-              }}
-            >
-              <strong>+</strong>
-            </CounterButton>
-          </CounterButtonWrapper>
+          <Counter count={count} setCount={setCount} />
         </ProductDetails>
         <SecondarySolidButton width="100">
           <AddToCartButton id={props.id} quantity={count} />

@@ -36,36 +36,3 @@ export const ProductPrice = styled.h3`
   font-size: ${typeScale.paragraph};
   color: ${props => props.theme.primaryColor};
 `
-export const CounterButtonWrapper = styled.div`
-  width: 30%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: ${typeScale.paragraph};
-`
-
-export const CounterButton = styled.button`
-  padding: 0.4rem;
-  font-size: ${typeScale.paragraph};
-  line-height: 1;
-  width: 3rem;
-  height: 3rem;
-  background: none;
-  color: ${props => props.theme.textColor};
-  border: 1px solid ${props => props.theme.secondaryColor};
-  border-radius: ${radius.small};
-  transition: 100ms ease;
-  &:hover {
-    background: ${props => props.theme.secondaryHoverColor};
-    color: ${props => props.theme.textOnSecondaryHoverColor};
-    transform: translateY(-1.5px);
-  }
-  &:focus {
-    outline: none;
-    transform: translateY(-1.5px);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-`

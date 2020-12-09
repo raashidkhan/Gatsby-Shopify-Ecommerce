@@ -3,6 +3,8 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import ProductDetails from "../components/productpage/ProductDetails"
 import RelatedProducts from "../components/productpage/RelatedProducts"
+import Collection from "../components/homepage/collection/Collection"
+import styled from "styled-components"
 const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
 
@@ -21,11 +23,26 @@ const ProductPage = ({ data }) => {
         related={data.allShopifyProduct.edges}
         current={product.id}
       />
+      <ProductCollection>
+        <h2>Browse our collections</h2>
+        <Collection />
+      </ProductCollection>
     </Layout>
   )
 }
 
 export default ProductPage
+
+const ProductCollection = styled.section`
+  width: 100%;
+  padding: 5vw;
+  padding-bottom: 0;
+
+  h2 {
+    margin-bottom: 2.4rem;
+    font-weight: 400;
+  }
+`
 
 export const query = graphql`
   query($slug: String!, $type: String!) {
