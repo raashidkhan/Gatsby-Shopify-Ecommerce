@@ -44,7 +44,7 @@ const Header = () => {
         <animated.div style={animation}>
           <MobileMenu>
             <MobileMenuItem>
-              <Link to="/account">Shop</Link>
+              <Link to="/shop">Shop</Link>
             </MobileMenuItem>
             <MobileMenuItem>
               <Link to="/account">Blog</Link>
@@ -74,7 +74,7 @@ const Header = () => {
         </animated.div>
         <DesktopMenu>
           <DesktopMenuItem>
-            <Link to="/account">Shop</Link>
+            <Link to="/shop">Shop</Link>
           </DesktopMenuItem>
           <DesktopMenuItem>
             <Link to="/account">Blog</Link>

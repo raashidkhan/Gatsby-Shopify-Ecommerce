@@ -132,6 +132,7 @@ export const CartItemContent = styled.article`
 
 export const CartItemImage = styled.div`
   position: relative;
+  min-height: 9rem;
   p {
     position: absolute;
     top: -1rem;
