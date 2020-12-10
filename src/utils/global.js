@@ -68,6 +68,7 @@ export const GlobalStyle = createGlobalStyle`
   input, label, button{
     font-family:inherit;
   }
+
 `
 
 export const radius = {

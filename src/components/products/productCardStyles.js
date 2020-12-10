@@ -5,21 +5,25 @@ import { radius, typeScale, Button, elevation } from "../../utils"
 export const ProductCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2.4rem;
+
+  //padding: 2.4rem;
   border-radius: ${radius.large};
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(15px);
+  //background-color: ${props => props.theme.surface};
+  //backdrop-filter: blur(15px);
   //box-shadow: ${elevation[100]};
+  border: 1px solid rgba(0, 0, 0, 0.1);
 `
 export const ProductImage = styled(Link)`
   border-radius: ${radius.large};
   overflow: hidden;
-  margin-bottom: 2.4rem;
-  height: 60%;
+  height: 65%;
 
   div {
     height: 100%;
   }
+`
+export const ProjectContent = styled.div`
+  padding: 2.4rem;
 `
 export const ProductDetails = styled.div`
   display: flex;
