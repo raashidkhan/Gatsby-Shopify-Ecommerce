@@ -3,11 +3,11 @@ import { typeScale, green, orange, radius, neutral } from "../../../utils"
 export const NewArrivalWrapper = styled.section`
   width: 100%;
   margin-bottom: 10vw;
-  padding: 5vw;
+  //padding: 5vw;
   //background: linear-gradient(67deg, ${orange[100]}, ${green[100]});
-  background-color: ${props => props.theme.levelOne};
-  border-radius: ${radius.large};
-  overflow: hidden;
+  //background-color: ${props => props.theme.levelOne};
+  //border-radius: ${radius.large};
+  //overflow: hidden;
 `
 export const HeadingWrapper = styled.div`
   padding: 2.4rem;

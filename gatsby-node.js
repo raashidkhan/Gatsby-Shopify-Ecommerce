@@ -18,9 +18,16 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
       allShopifyArticle {
-        nodes {
-          handle
-          id
+        edges {
+          next {
+            handle
+          }
+          node {
+            handle
+          }
+          previous {
+            handle
+          }
         }
       }
     }
@@ -45,12 +52,22 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-  result.data.allShopifyArticle.nodes.forEach(item => {
+  result.data.allShopifyArticle.edges.forEach(item => {
+    let previousArticle = ""
+    item.previous === null
+      ? (previousArticle = "")
+      : (previousArticle = item.previous.handle)
+
+    let nextArticle = ""
+    item.next === null ? (nextArticle = "") : (nextArticle = item.next.handle)
+
     createPage({
-      path: `/articles/${item.handle}`,
+      path: `/blogs/${item.node.handle}`,
       component: path.resolve(`src/templates/BlogPage.js`),
       context: {
-        slug: item.handle,
+        slug: item.node.handle,
+        next: nextArticle,
+        previous: previousArticle,
       },
     })
   })

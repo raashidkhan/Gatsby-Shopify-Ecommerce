@@ -47,7 +47,7 @@ const Header = () => {
               <Link to="/shop">Shop</Link>
             </MobileMenuItem>
             <MobileMenuItem>
-              <Link to="/account">Blog</Link>
+              <Link to="/blogs">Blog</Link>
             </MobileMenuItem>
             <MobileMenuItem>
               <Link to="/account">Contact</Link>
@@ -77,10 +77,10 @@ const Header = () => {
             <Link to="/shop">Shop</Link>
           </DesktopMenuItem>
           <DesktopMenuItem>
-            <Link to="/account">Blog</Link>
+            <Link to="/blogs">Blog</Link>
           </DesktopMenuItem>
           <DesktopMenuItem>
-            <Link to="/account">Contact</Link>
+            <Link to="/contact">Contact</Link>
           </DesktopMenuItem>
           <DesktopMenuItem>
             {isAuthenticated ? (
