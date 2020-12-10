@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import ProductCard from "../products/productCard"
-import { FormLabel, green, Select, typeScale } from "../../utils"
+import { FormLabel, Select, typeScale } from "../../utils"
 const ShopListing = ({ products }) => {
   const [sort, setSort] = useState("featured")
   const [filter, setFilter] = useState("All")

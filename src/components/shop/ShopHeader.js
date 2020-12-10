@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import Image from "gatsby-image"
 import { radius, SecondarySolidButton, TextLink, typeScale } from "../../utils"
 import styled from "styled-components"

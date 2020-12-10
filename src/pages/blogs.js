@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-import { elevation, radius, TextLink, typeScale } from "../utils"
+import { elevation, radius, TextLink } from "../utils"
 import ArticleCard from "../components/blogpage/HorizontalBlogCard"
 import Layout from "../components/layout"
 const Blog = () => {
@@ -42,7 +42,7 @@ const Blog = () => {
         </ArticleImage>
         <h2>{articles[0].title}</h2>
         <p>{articles[0].excerpt.split(" ").splice(0, 45).join(" ")}... </p>
-        <TextLink to={`/blog/${articles[0].handle}`}>Read More</TextLink>
+        <TextLink to={`/blogs/${articles[0].handle}`}>Read More</TextLink>
       </FirstArticle>
       <ArticlesWrapper>
         {articles.slice(1).map((item, index) => {

@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react"
 import Store from "../../context/store"
 import Loader from "../loader"
-import styled, { ThemeContext } from "styled-components"
-import { orange, SolidButton } from "../../utils"
+import styled from "styled-components"
+import { orange } from "../../utils"
 
 const AddToCartButton = ({ id, quantity }) => {
   const { addToCart } = useContext(Store)
-  const themeContext = useContext(ThemeContext)
+
   const [isLoading, setIsLoading] = useState(false)
 
   return (

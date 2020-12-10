@@ -5,7 +5,7 @@ import Layout from "../../components/layout"
 import LoginForm from "../../components/accounts/LoginForm"
 import ForgotPasswordForm from "../../components/accounts/ForgetPasswordForm"
 import styled from "styled-components"
-import { radius, PrimarySolidButton } from "../../utils"
+import { PrimarySolidButton } from "../../utils"
 import LogInImage from "../../assets/login-image.jpg"
 const Login = ({ location }) => {
   console.log(location)

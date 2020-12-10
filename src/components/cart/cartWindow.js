@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import Store from "../../context/store"
 import styled from "styled-components"
-import Image from "gatsby-image"
+
 import {
   Cart,
   CartItemContent,

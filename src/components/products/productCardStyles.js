@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { radius, typeScale, Button, elevation } from "../../utils"
+import { radius, typeScale, elevation } from "../../utils"
 
 export const ProductCardWrapper = styled.div`
   display: flex;

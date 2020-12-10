@@ -2,14 +2,12 @@ import React, { useState, useContext } from "react"
 import { Mutation } from "react-apollo"
 import gql from "graphql-tag"
 import StoreContext from "../../context/store"
-import { Link } from "gatsby"
+
 import {
   FormInput,
   FormLabel,
   radius,
-  elevation,
   typeScale,
-  InternalLinkButton,
   SecondarySolidButton,
   red,
   neutral,

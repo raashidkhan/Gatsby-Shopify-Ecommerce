@@ -1,6 +1,5 @@
 import React from "react"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
 import Hero from "../components/homepage/hero/Hero"
 import Collection from "../components/homepage/collection/Collection"
 import NewArrivals from "../components/homepage/newArrivals/NewArrivals"

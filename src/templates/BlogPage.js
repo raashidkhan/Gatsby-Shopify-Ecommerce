@@ -23,27 +23,32 @@ const BlogPage = ({ data }) => {
           by <em>{article.author.name}</em>
         </p>
       </BlogHeader>
-      <BlogBody>{parse(article.contentHtml)}</BlogBody>
-      <NextAndPrevWrapper>
-        {previous === null ? (
-          <SecondarySolidButton>
-            <Link to={`/blogs/`}>All Blogs</Link>
-          </SecondarySolidButton>
-        ) : (
-          <SecondarySolidButton>
-            <Link to={`/blogs/${previous.handle}`}>Prev</Link>
-          </SecondarySolidButton>
-        )}
-        {next === null ? (
-          <SecondarySolidButton>
-            <Link to={`/blogs/`}>All Blogs</Link>
-          </SecondarySolidButton>
-        ) : (
-          <SecondarySolidButton>
-            <Link to={`/blogs/${next.handle}`}>Next</Link>
-          </SecondarySolidButton>
-        )}
-      </NextAndPrevWrapper>
+      <BlogBody>
+        <div className="prev">
+          {previous === null ? (
+            <SecondarySolidButton>
+              <Link to={`/blogs/`}>All Blogs</Link>
+            </SecondarySolidButton>
+          ) : (
+            <SecondarySolidButton>
+              <Link to={`/blogs/${previous.handle}`}>Prev</Link>
+            </SecondarySolidButton>
+          )}
+        </div>
+        <article className="body">{parse(article.contentHtml)}</article>
+        <div className="next">
+          {next === null ? (
+            <SecondarySolidButton>
+              <Link to={`/blogs/`}>All Blogs</Link>
+            </SecondarySolidButton>
+          ) : (
+            <SecondarySolidButton>
+              <Link to={`/blogs/${next.handle}`}>Next</Link>
+            </SecondarySolidButton>
+          )}
+        </div>
+      </BlogBody>
+      <NextAndPrevWrapper></NextAndPrevWrapper>
     </Layout>
   )
 }
@@ -54,6 +59,16 @@ export const query = graphql`
   query MyArticles($slug: String!, $next: String!, $previous: String!) {
     nextArticle: shopifyArticle(handle: { eq: $next }) {
       handle
+      title
+      image {
+        localFile {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid_withWebp_noBase64
+            }
+          }
+        }
+      }
     }
     shopifyArticle(handle: { eq: $slug }) {
       contentHtml
@@ -74,6 +89,16 @@ export const query = graphql`
     }
     previousArticle: shopifyArticle(handle: { eq: $previous }) {
       handle
+      title
+      image {
+        localFile {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid_withWebp_noBase64
+            }
+          }
+        }
+      }
     }
   }
 `
@@ -104,8 +129,33 @@ const BlogBody = styled.article`
   padding: 5vw;
   display: grid;
   grid-template-columns: 1fr min(70ch, 100%) 1fr;
+
+  .prev {
+    grid-column: 1 / 2;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .body {
+    grid-column: 2 / 3;
+  }
+  .next {
+    grid-column: 3 / 4;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
   & > * {
-    grid-column: 2;
+    //grid-column: 2;
     font-size: ${typeScale.header5};
   }
 

@@ -1,14 +1,12 @@
 import React, { useState } from "react"
 import gql from "graphql-tag"
-import { Mutation, Query } from "react-apollo"
+import { Mutation } from "react-apollo"
 import AccountLayout from "../../components/accounts/AccountLayout"
 import { navigate } from "gatsby"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import SignUpImage from "../../assets/sign-up-image.jpg"
 import {
-  radius,
-  elevation,
   typeScale,
   FormInput,
   FormLabel,

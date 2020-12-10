@@ -1,8 +1,6 @@
 import styled from "styled-components"
 import {
   red,
-  orange,
-  green,
   elevation,
   radius,
   typeScale,

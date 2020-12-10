@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-import { elevation, radius, TextLink, typeScale } from "../../../utils"
+import { radius, TextLink, typeScale } from "../../../utils"
 import ArticleCard from "../../blogpage/HorizontalBlogCard"
 const Articles = () => {
   const data = useStaticQuery(graphql`

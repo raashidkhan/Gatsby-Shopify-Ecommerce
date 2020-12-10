@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { navigate } from "gatsby"
 import StoreContext, { defaultStoreContext } from "../context/store"
-import { useContext } from "react"
 const isBrowser = typeof window !== "undefined"
 
 const Provider = ({ children }) => {

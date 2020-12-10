@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { green, neutral } from "./colors"
+import { green } from "./colors"
 import { elevation, radius } from "./global"
 import { typeScale } from "./typography"
 export const FormLabel = styled.label`

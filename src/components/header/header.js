@@ -19,7 +19,7 @@ import {
 } from "./headerStyles"
 
 const Header = () => {
-  const { customerAccessToken, isCartOpen, toggleCart, checkout } = useContext(
+  const { customerAccessToken, isCartOpen, toggleCart } = useContext(
     StoreContext
   )
   const [isOpen, setIsOpen] = useState(false)
