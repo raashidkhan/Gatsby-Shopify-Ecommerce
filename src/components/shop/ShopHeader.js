@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import Image from "gatsby-image"
-import { radius, SecondarySolidButton, typeScale } from "../../utils"
+import { radius, SecondarySolidButton, TextLink, typeScale } from "../../utils"
 import styled from "styled-components"
 import AddToCartButton from "../buttons/AddToCartButton"
 
@@ -16,7 +16,7 @@ const ShopHeader = ({ image, title, handle, desc, id }) => {
           <p>
             {shortDesc}...&nbsp;
             <Read>
-              <Link to={`/product/${handle}`}>Read More</Link>
+              <TextLink to={`/product/${handle}`}>Read More</TextLink>
             </Read>
           </p>
           <SecondarySolidButton width="100">

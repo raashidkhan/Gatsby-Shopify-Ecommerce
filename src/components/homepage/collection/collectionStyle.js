@@ -10,7 +10,7 @@ export const CollectionItems = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  gap: 5vw;
+  gap: 2.5vw;
 `
 export const CollectionItemDetails = styled(Link)`
   width: 100%;

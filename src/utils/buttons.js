@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Link } from "gatsby"
 import { neutral } from "./colors"
 import { typeScale } from "./typography"
 import { elevation, radius } from "./global"
@@ -101,5 +102,16 @@ export const SecondaryOutlineButton = styled(Button)`
   &:active {
     outline: none;
     transform: translateY(0);
+  }
+`
+
+export const TextLink = styled(Link)`
+  font-weight: 700;
+  text-decoration: underline;
+  color: ${props => props.theme.primaryColor};
+  display: block;
+
+  &:hover {
+    color: ${props => props.theme.primaryHoverColor};
   }
 `

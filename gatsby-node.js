@@ -17,6 +17,12 @@ exports.createPages = async ({ graphql, actions }) => {
           shopifyId
         }
       }
+      allShopifyArticle {
+        nodes {
+          handle
+          id
+        }
+      }
     }
   `)
 
@@ -34,6 +40,15 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/collection/${item.handle}`,
       component: path.resolve(`src/templates/CollectionPage.js`),
+      context: {
+        slug: item.handle,
+      },
+    })
+  })
+  result.data.allShopifyArticle.nodes.forEach(item => {
+    createPage({
+      path: `/articles/${item.handle}`,
+      component: path.resolve(`src/templates/BlogPage.js`),
       context: {
         slug: item.handle,
       },
