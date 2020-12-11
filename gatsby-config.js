@@ -39,6 +39,7 @@ module.exports = {
       options: {
         shopName: process.env.SHOPIFY_STORE_NAME,
         accessToken: process.env.SHOPIFY_API_KEY,
+        apiVersion: "2020-10",
       },
     },
     {

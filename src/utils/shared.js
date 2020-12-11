@@ -4,18 +4,19 @@ import { elevation, radius } from "./global"
 import { typeScale } from "./typography"
 export const FormLabel = styled.label`
   font-family: inherit;
-  margin-bottom: 2.4rem;
+  margin-bottom: 1.6rem;
   font-size: ${typeScale.paragraph};
   //font-weight: 700;
+  display: block;
 `
 
 export const FormInput = styled.input`
-  min-width: 20vw;
+  //min-width: 20vw;
   width: 100%;
   display: block;
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 1rem;
-  border-radius: ${radius.large};
+  border-radius: ${radius.medium};
   outline: none;
   transition: 100ms ease;
   margin-top: 0.8rem;
@@ -37,36 +38,39 @@ export const FormInput = styled.input`
 
 export const Select = styled.select`
   font-family: inherit;
-  font-size: inherit;
   color: inherit;
   display: inline-block;
-  margin-left: 2.4rem;
-  padding: 0.4rem 0.8rem;
   cursor: pointer;
-  border-radius: ${radius.small};
-  background-color: ${green[100]};
-  border: none;
-  box-shadow: ${elevation[100]};
-  border-bottom: 2px solid ${green[300]};
+  width: 100%;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: ${radius.medium};
+  outline: none;
+  transition: 100ms ease;
+  margin-top: 0.8rem;
 
   &:hover {
-    border-bottom-color: ${green[400]};
-  }
-
-  &:active {
-    background-color: ${green[200]};
+    transform: translateY(-2px);
+    background-color: ${green[100]};
   }
 
   &:focus {
-    outline: 1px solid ${props => props.theme.secondaryColor};
-    outline-offset: 3px;
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 
   & > option:nth-child(odd) {
-    background-color: ${green[100]};
+    background-color: ${neutral[100]};
+    font-size: 1.6rem;
   }
   & > option:nth-child(even) {
-    background-color: ${green[200]};
+    background-color: ${neutral[200]};
+    font-size: 1.6rem;
   }
 `
 
@@ -124,5 +128,43 @@ export const Skeleton = styled.div`
 
   & > div:last-child {
     min-height: 4rem;
+  }
+`
+export const Tags = styled.span`
+  font-size: ${typeScale.helperText};
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 0.4rem 0.8rem;
+  border-radius: ${radius.small};
+  margin: 0.5rem 1rem;
+  margin-left: 0;
+  display: inline-block;
+
+  transition: 100ms ease;
+`
+export const SuccessTags = styled(Tags)`
+  background-color: ${props => props.theme.status.successColor};
+  &:hover {
+    background-color: ${props => props.theme.status.successColorHover};
+  }
+`
+export const InProgressTags = styled(Tags)`
+  background-color: ${props => props.theme.status.warningColor};
+  &:hover {
+    background-color: ${props => props.theme.status.warningColorHover};
+  }
+`
+export const CancelledTags = styled(Tags)`
+  background-color: ${props => props.theme.status.errorColor};
+  color: ${props => props.theme.white};
+  &:hover {
+    background-color: ${props => props.theme.status.errorColorHover};
+  }
+`
+export const OutlineTags = styled(Tags)`
+  border: 1px solid ${props => props.theme.secondaryColor};
+  &:hover {
+    background-color: ${props => props.theme.secondaryColor};
+    color: ${props => props.theme.textOnSecondaryHoverColor};
   }
 `

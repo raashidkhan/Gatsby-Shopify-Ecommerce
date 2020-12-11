@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
     margin: 0;
     padding: 0;
+    
   }
 
   html {
@@ -63,7 +64,12 @@ export const GlobalStyle = createGlobalStyle`
    text-decoration:none;
    color:inherit;
  }
- 
+ button, li, a{
+   &:focus{
+    outline:1px solid ${props => props.theme.primaryColor};
+    outline-offset:2px;
+   }
+ }
 
   input, label, button{
     font-family:inherit;

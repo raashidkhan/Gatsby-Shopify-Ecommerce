@@ -2,7 +2,6 @@ import React from "react"
 import styled from "styled-components"
 import { neutral, typeScale } from "../../utils"
 const CustomerDetails = ({ firstName, lastName, address, phone, email }) => {
-  console.log(phone, email)
   return (
     <Customer>
       <h3>Account Details</h3>
@@ -26,12 +25,12 @@ const CustomerDetails = ({ firstName, lastName, address, phone, email }) => {
       {address === null ? (
         ""
       ) : (
-        <p>
+        <div>
           <span>Default Address</span>
           <address>
             {address.address1} {address.city} {address.country} {address.zip}
           </address>
-        </p>
+        </div>
       )}
     </Customer>
   )
@@ -57,8 +56,10 @@ const Customer = styled.aside`
     font-weight: 400;
     margin-bottom: 1.4rem;
   }
+  div,
   p {
     margin-bottom: 1.2rem;
+    border: 1px;
 
     & > span {
       display: block;

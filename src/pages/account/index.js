@@ -7,7 +7,9 @@ import Logout from "../../components/accounts/Logout"
 import CustomerDetails from "../../components/accounts/CustomerDetails"
 import OrderList from "../../components/accounts/OrderList"
 import SavedAddress from "../../components/accounts/SavedAddress"
+import AddressForm from "../../components/accounts/AddressForm"
 import styled from "styled-components"
+import { Link } from "gatsby"
 import {
   SecondaryOutlineButton,
   typeScale,
@@ -15,7 +17,8 @@ import {
   PrimarySolidButton,
   Skeleton,
 } from "../../utils"
-import { Link } from "gatsby"
+import SkeletonLoader from "../../components/SkeletonLoader"
+
 const CUSTOMER_INFO = gql`
   query($customerAccessToken: String!) {
     customer(customerAccessToken: $customerAccessToken) {
@@ -31,7 +34,7 @@ const CUSTOMER_INFO = gql`
         zip
         country
       }
-      orders(first: 10) {
+      orders(first: 10, reverse: true) {
         edges {
           node {
             name
@@ -40,19 +43,30 @@ const CUSTOMER_INFO = gql`
             statusUrl
             currencyCode
             orderNumber
+            fulfillmentStatus
+            financialStatus
             successfulFulfillments {
               trackingCompany
+            }
+            shippingAddress {
+              address1
+              address2
+              city
+              country
+              zip
             }
             lineItems(first: 10) {
               edges {
                 node {
                   title
-
                   quantity
                   variant {
                     price
                     image {
                       src
+                    }
+                    product {
+                      handle
                     }
                   }
                 }
@@ -66,6 +80,7 @@ const CUSTOMER_INFO = gql`
               zip
               country
             }
+
             subtotalPrice
             totalPrice
           }
@@ -89,6 +104,8 @@ const CUSTOMER_INFO = gql`
 `
 const Index = () => {
   const { customerAccessToken } = useContext(StoreContext)
+  const [showAddressForm, setShowAddressForm] = useState(false)
+
   const isCustomer = customerAccessToken !== null
   const isAuthenticated =
     customerAccessToken &&
@@ -112,44 +129,24 @@ const Index = () => {
                 return (
                   <>
                     <AccountIntro>
-                      <Skeleton delay="1" delay2="2" delay3="3">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                      </Skeleton>
+                      <SkeletonLoader />
                     </AccountIntro>
                     <MainSection>
                       <AccDetails className="accountDetails">
-                        <Skeleton delay="1" delay2="2" delay3="3">
-                          <div></div>
-                          <div></div>
-                          <div></div>
-                        </Skeleton>
+                        <SkeletonLoader />
                       </AccDetails>
                       <OrderDetails className="orderList">
-                        <Skeleton delay="1" delay2="2" delay3="3">
-                          <div></div>
-                          <div></div>
-                          <div></div>
-                        </Skeleton>
-                        <Skeleton delay="1" delay2="2" delay3="3">
-                          <div></div>
-                          <div></div>
-                          <div></div>
-                        </Skeleton>
-                        <Skeleton delay="1" delay2="2" delay3="3">
-                          <div></div>
-                          <div></div>
-                          <div></div>
-                        </Skeleton>
-                        <Skeleton delay="1" delay2="2" delay3="3">
-                          <div></div>
-                          <div></div>
-                          <div></div>
-                        </Skeleton>
+                        <SkeletonLoader />
+                        <SkeletonLoader />
+                        <SkeletonLoader />
+                        <SkeletonLoader />
                       </OrderDetails>
                     </MainSection>
-                    <AddressSection></AddressSection>
+                    <AddressSection>
+                      <SkeletonLoader />
+                      <SkeletonLoader />
+                      <SkeletonLoader />
+                    </AddressSection>
                   </>
                 )
               }
@@ -189,7 +186,14 @@ const Index = () => {
                     </OrderDetails>
                   </MainSection>
                   <AddressSection>
-                    <SavedAddress addresses={addresses.edges} />
+                    <SavedAddress
+                      addresses={addresses.edges}
+                      addressFormToggle={setShowAddressForm}
+                    />
+
+                    {showAddressForm && (
+                      <AddressForm addressFormToggle={setShowAddressForm} />
+                    )}
                   </AddressSection>
                 </>
               )

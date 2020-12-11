@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { radius, typeScale } from "../../utils"
-const SavedAddress = ({ addresses }) => {
+const SavedAddress = ({ addresses, addressFormToggle }) => {
   return (
     <>
       <AddressHeading>Saved Addresses</AddressHeading>
@@ -19,7 +19,13 @@ const SavedAddress = ({ addresses }) => {
             </AddressCard>
           )
         })}
-        <Add>add</Add>
+        <Add
+          onClick={() => {
+            addressFormToggle(true)
+          }}
+        >
+          add
+        </Add>
       </AddressWrapper>
     </>
   )

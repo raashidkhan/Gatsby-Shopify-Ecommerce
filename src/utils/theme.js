@@ -13,7 +13,7 @@ export const defaultTheme = {
   secondaryColor: green[400],
   textOnSecondary: neutral[900],
   secondaryHoverColor: green[300],
-  textOnSecondaryHoverColor: neutral[800],
+  textOnSecondaryHoverColor: neutral[200],
   secondaryActiveColor: green[300],
   textOnSecondaryActiveColor: neutral[800],
 
@@ -28,12 +28,12 @@ export const defaultTheme = {
   status: {
     warningColor: yellow[100],
     warningColorHover: yellow[200],
-    warningColorActive: yellow[300],
-    errorColor: red[100],
-    errorColorHover: red[200],
-    errorColorActive: red[300],
-    successColor: green[200],
-    successColorHover: green[300],
-    successColorActive: green[300],
+    warningColorActive: yellow[200],
+    errorColor: red[200],
+    errorColorHover: red[100],
+    errorColorActive: red[100],
+    successColor: green[300],
+    successColorHover: green[200],
+    successColorActive: green[200],
   },
 }
