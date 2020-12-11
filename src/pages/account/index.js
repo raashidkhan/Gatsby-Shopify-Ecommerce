@@ -13,6 +13,7 @@ import {
   typeScale,
   radius,
   PrimarySolidButton,
+  Skeleton,
 } from "../../utils"
 import { Link } from "gatsby"
 const CUSTOMER_INFO = gql`
@@ -107,7 +108,51 @@ const Index = () => {
             }}
           >
             {({ loading, error, data }) => {
-              if (loading) return <div>Fetching</div>
+              if (loading) {
+                return (
+                  <>
+                    <AccountIntro>
+                      <Skeleton delay="1" delay2="2" delay3="3">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </Skeleton>
+                    </AccountIntro>
+                    <MainSection>
+                      <AccDetails className="accountDetails">
+                        <Skeleton delay="1" delay2="2" delay3="3">
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                        </Skeleton>
+                      </AccDetails>
+                      <OrderDetails className="orderList">
+                        <Skeleton delay="1" delay2="2" delay3="3">
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                        </Skeleton>
+                        <Skeleton delay="1" delay2="2" delay3="3">
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                        </Skeleton>
+                        <Skeleton delay="1" delay2="2" delay3="3">
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                        </Skeleton>
+                        <Skeleton delay="1" delay2="2" delay3="3">
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                        </Skeleton>
+                      </OrderDetails>
+                    </MainSection>
+                    <AddressSection></AddressSection>
+                  </>
+                )
+              }
               if (error) return console.error(error)
               console.log(data)
               // const { defaultAddress, orders, addresses } = data.customer
@@ -188,7 +233,8 @@ const AccountIntro = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 5vw;
+  margin-top: 2.5vw;
+  min-height: 9rem;
 
   & > h2 {
     font-size: ${typeScale.header3};
@@ -206,6 +252,7 @@ const AccDetails = styled.aside`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  min-height: 90vh;
   height: 90vh;
   position: sticky;
   top: 5vw;
@@ -214,6 +261,7 @@ const AccDetails = styled.aside`
   padding: 2.4rem;
 `
 const OrderDetails = styled.div`
+  min-height: 90vh;
   padding: 2.4rem;
   background-color: ${props => props.theme.surface};
   border-radius: ${radius.large};
