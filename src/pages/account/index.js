@@ -8,6 +8,7 @@ import CustomerDetails from "../../components/accounts/CustomerDetails"
 import OrderList from "../../components/accounts/OrderList"
 import SavedAddress from "../../components/accounts/SavedAddress"
 import AddressForm from "../../components/accounts/AddressForm"
+
 import styled from "styled-components"
 import { Link } from "gatsby"
 import {
@@ -18,6 +19,7 @@ import {
   Skeleton,
 } from "../../utils"
 import SkeletonLoader from "../../components/SkeletonLoader"
+import CustomerUpdateForm from "../../components/accounts/CustomerUpdateForm"
 
 const CUSTOMER_INFO = gql`
   query($customerAccessToken: String!) {
@@ -27,12 +29,17 @@ const CUSTOMER_INFO = gql`
       lastName
       phone
       defaultAddress {
-        firstName
-        lastName
+        id
         address1
+        address2
         city
-        zip
+        lastName
+        firstName
         country
+        name
+        zip
+        company
+        phone
       }
       orders(first: 10, reverse: true) {
         edges {
@@ -89,13 +96,17 @@ const CUSTOMER_INFO = gql`
       addresses(first: 10) {
         edges {
           node {
+            id
             address1
+            address2
             city
             lastName
             firstName
             country
             name
             zip
+            company
+            phone
           }
         }
       }
@@ -151,7 +162,7 @@ const Index = () => {
                 )
               }
               if (error) return console.error(error)
-              console.log(data)
+
               // const { defaultAddress, orders, addresses } = data.customer
               const {
                 firstName,
@@ -255,7 +266,7 @@ const MainSection = styled.section`
 const AccDetails = styled.aside`
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   min-height: 90vh;
   height: 90vh;
   position: sticky;
@@ -263,6 +274,7 @@ const AccDetails = styled.aside`
   background-color: ${props => props.theme.surface};
   border-radius: ${radius.large};
   padding: 2.4rem;
+  overflow-y: auto;
 `
 const OrderDetails = styled.div`
   min-height: 90vh;

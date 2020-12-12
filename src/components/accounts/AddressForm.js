@@ -164,6 +164,7 @@ const AddressForm = ({ addressFormToggle }) => {
                         customerAccessToken: customerAccessToken.accessToken,
                         address: {
                           address1: address,
+                          address2: apartment,
                           city: city,
                           company: company,
                           country: country,

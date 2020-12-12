@@ -114,3 +114,18 @@ export const TextLink = styled(Link)`
     color: ${props => props.theme.primaryHoverColor};
   }
 `
+export const SmallButton = styled.button`
+  font-size: ${typeScale.helperText};
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid ${props => props.theme.secondaryColor};
+  background: none;
+  transition: 100ms ease;
+  color: inherit;
+
+  &:hover {
+    transform: translateY(-2px);
+    background-color: ${props => props.theme.secondaryColor};
+    color: ${props => props.theme.textOnSecondaryHoverColor};
+  }
+`

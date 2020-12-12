@@ -8,6 +8,7 @@ import {
   InProgressTags,
   CancelledTags,
   OutlineTags,
+  SmallButton,
 } from "../../utils"
 import NoImage from "../../assets/No-image-available.png"
 import { Link } from "gatsby"
@@ -18,7 +19,6 @@ const OrderList = ({ orders }) => {
     <>
       <OrderHeading>Your Recent Orders</OrderHeading>
       {orders.map(order => {
-        console.log(order.node.fulfillmentStatus)
         return (
           <OrderCard key={order.node.name}>
             <Details>
@@ -61,13 +61,13 @@ const OrderList = ({ orders }) => {
                     {order.node.lineItems.edges.length <= numberOfItem ? (
                       ""
                     ) : (
-                      <Expand
+                      <SmallButton
                         onClick={() => {
                           setNumberOfItem(order.node.lineItems.edges.length)
                         }}
                       >
                         Expand
-                      </Expand>
+                      </SmallButton>
                     )}
                   </p>
                 )}
