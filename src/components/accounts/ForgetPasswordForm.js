@@ -6,8 +6,8 @@ import {
   typeScale,
   FormInput,
   FormLabel,
-  PrimaryButton,
-  SecondaryButton,
+  SecondaryOutlineButton,
+  SecondarySolidButton,
 } from "../../utils"
 
 const CUSTOMER_PASSWORD_RESET = gql`
@@ -44,7 +44,7 @@ const ForgetPasswordForm = ({ setMessageInfo, setPasswordForgot }) => {
                 />
               </FormLabel>
 
-              <PrimaryButton
+              <SecondarySolidButton
                 style={{ marginBottom: "2.4rem" }}
                 className="button"
                 onClick={e => {
@@ -62,14 +62,14 @@ const ForgetPasswordForm = ({ setMessageInfo, setPasswordForgot }) => {
                 }}
               >
                 SEND LINK
-              </PrimaryButton>
-              <SecondaryButton
+              </SecondarySolidButton>
+              <SecondaryOutlineButton
                 onClick={() => {
                   setPasswordForgot(false)
                 }}
               >
                 Back
-              </SecondaryButton>
+              </SecondaryOutlineButton>
             </Form>
           )
         }}

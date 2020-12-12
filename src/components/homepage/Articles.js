@@ -2,8 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-import { radius, TextLink, typeScale } from "../../../utils"
-import ArticleCard from "../../blogpage/HorizontalBlogCard"
+import { radius, TextLink, typeScale, Devices } from "../../utils"
+import ArticleCard from "../blogpage/HorizontalBlogCard"
 const Articles = () => {
   const data = useStaticQuery(graphql`
     {
@@ -41,9 +41,11 @@ const Articles = () => {
           <ArticleImage>
             <Image fluid={articles[0].image.localFile.childImageSharp.fluid} />
           </ArticleImage>
-          <h2>{articles[0].title}</h2>
-          <p>{articles[0].excerpt.split(" ").splice(0, 45).join(" ")}... </p>
-          <TextLink to={`/blogs/${articles[0].handle}`}>Read More</TextLink>
+          <ArticleContent>
+            <h2>{articles[0].title}</h2>
+            <p>{articles[0].excerpt.split(" ").splice(0, 45).join(" ")}... </p>
+            <TextLink to={`/blogs/${articles[0].handle}`}>Read More</TextLink>
+          </ArticleContent>
         </FirstArticle>
 
         {articles.slice(0).map((item, index) => {
@@ -74,6 +76,9 @@ export const BlogHeading = styled.h2`
   text-align: center;
   font-weight: 400;
   margin-bottom: 2.5vw;
+  @media ${Devices.mobile} {
+    text-align: left;
+  }
 `
 
 const ArticlesWrapper = styled.section`
@@ -86,11 +91,12 @@ const ArticlesWrapper = styled.section`
     "articleOne articleThree"
     "articleOne articleFour";
 
+  @media ${Devices.tab} {
+    display: block;
+  }
+
   .firstArticle {
     grid-area: articleOne;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: ${radius.medium};
-    overflow: hidden;
   }
   .article-1 {
     grid-area: articleTwo;
@@ -104,8 +110,17 @@ const ArticlesWrapper = styled.section`
 `
 
 const FirstArticle = styled.article`
-  h2 {
-    margin: 2.4rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: ${radius.medium};
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @media ${Devices.tab} {
+    margin-bottom: 5vw;
+  }
+  /* h2 {
+    margin: 1.6rem 0;
     padding: 0 2.4rem;
   }
   p {
@@ -114,13 +129,29 @@ const FirstArticle = styled.article`
   }
   a {
     padding: 0 2.4rem;
-  }
+    @media ${Devices.tab} {
+      margin-bottom: 2.5vw;
+    }
+  } */
 `
 const ArticleImage = styled.div`
   height: 65%;
+  @media ${Devices.tab} {
+    height: 20rem;
+  }
 
   div {
     width: 100%;
     height: 100%;
+  }
+`
+const ArticleContent = styled.div`
+  padding: 2.4rem;
+
+  & > h2 {
+    margin-bottom: 2.4rem;
+  }
+  & > p {
+    margin-bottom: 2.4rem;
   }
 `

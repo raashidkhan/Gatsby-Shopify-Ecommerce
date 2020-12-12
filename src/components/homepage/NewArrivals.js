@@ -1,13 +1,9 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import ProductCard from "../../products/productCard"
-import {
-  NewArrivalWrapper,
-  HeadingWrapper,
-  NewArrivalHeading,
-  NewArrivalSubHeading,
-  NewArrivalGrid,
-} from "./newArrivalsStyle"
+import ProductCard from "../products/productCard"
+import styled from "styled-components"
+import { typeScale, radius, neutral, Devices } from "../../utils"
+
 const NewArrivals = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -77,3 +73,51 @@ const NewArrivals = () => {
 }
 
 export default NewArrivals
+
+const NewArrivalWrapper = styled.section`
+  width: 100%;
+  margin-bottom: 10vw;
+`
+const HeadingWrapper = styled.div`
+  padding: 2.4rem;
+  border-radius: ${radius.large};
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(15px);
+  margin-bottom: 2.5vw;
+  text-align: center;
+  @media ${Devices.mobile} {
+    padding: 2.4rem 0;
+    text-align: left;
+  }
+`
+const NewArrivalHeading = styled.h2`
+  font-size: ${typeScale.header4};
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  margin-bottom: 1.4rem;
+  font-weight: 400;
+`
+const NewArrivalSubHeading = styled.blockquote`
+  font-size: ${typeScale.paragraph};
+  color: ${neutral[600]};
+`
+const NewArrivalGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 40rem;
+  grid-auto-rows: 40rem;
+  gap: 2.5vw;
+
+  @media ${Devices.tab} {
+    padding: 2.5vw 0;
+    grid-template-columns: 50% 50%;
+    grid-auto-columns: 50%;
+    grid-auto-flow: column;
+    overflow-y: auto;
+    gap: 5vw;
+  }
+  @media ${Devices.mobile} {
+    grid-template-columns: 90%;
+    grid-auto-columns: 90%;
+  }
+`

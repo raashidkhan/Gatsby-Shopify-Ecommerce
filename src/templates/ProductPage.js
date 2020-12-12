@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import ProductDetails from "../components/productpage/ProductDetails"
 import RelatedProducts from "../components/productpage/RelatedProducts"
-import Collection from "../components/homepage/collection/Collection"
+import Collection from "../components/homepage/Collection"
 import styled from "styled-components"
 const ProductPage = ({ data }) => {
   const product = data.shopifyProduct

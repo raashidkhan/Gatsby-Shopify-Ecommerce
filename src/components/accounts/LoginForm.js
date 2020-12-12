@@ -66,7 +66,7 @@ const LoginForm = ({ messageInfo, setPasswordForgot }) => {
               </FormLabel>
               <FormLabel
                 htmlFor="forgotPassword"
-                onClick={passwordForgot => {
+                onClick={() => {
                   setPasswordForgot(true)
                 }}
               >
@@ -77,7 +77,6 @@ const LoginForm = ({ messageInfo, setPasswordForgot }) => {
                     display: "block",
                   }}
                 >
-                  {" "}
                   Forgot Password?
                 </span>
               </FormLabel>
@@ -89,6 +88,11 @@ const LoginForm = ({ messageInfo, setPasswordForgot }) => {
                 type="submit"
                 onClick={e => {
                   e.preventDefault()
+
+                  if (email === null || password === null) {
+                    setIncorrectUserMessage("Please enter email and password")
+                    return
+                  }
                   customerLogin({
                     variables: {
                       input: {
@@ -113,7 +117,7 @@ const LoginForm = ({ messageInfo, setPasswordForgot }) => {
                     })
                     .catch(err => {
                       alert(err)
-                      console.log("fail")
+                      console.error(err)
                     })
                 }}
               >

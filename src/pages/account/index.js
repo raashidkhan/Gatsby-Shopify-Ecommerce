@@ -16,10 +16,8 @@ import {
   typeScale,
   radius,
   PrimarySolidButton,
-  Skeleton,
 } from "../../utils"
 import SkeletonLoader from "../../components/SkeletonLoader"
-import CustomerUpdateForm from "../../components/accounts/CustomerUpdateForm"
 
 const CUSTOMER_INFO = gql`
   query($customerAccessToken: String!) {

@@ -7,8 +7,7 @@ import ForgotPasswordForm from "../../components/accounts/ForgetPasswordForm"
 import styled from "styled-components"
 import { PrimarySolidButton } from "../../utils"
 import LogInImage from "../../assets/login-image.jpg"
-const Login = ({ location }) => {
-  console.log(location)
+const Login = () => {
   const [passwordForgot, setPasswordForgot] = useState(false)
   const [messageInfo, setMessageInfo] = useState("")
   return (

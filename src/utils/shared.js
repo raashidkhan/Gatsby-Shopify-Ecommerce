@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components"
 import { green, neutral } from "./colors"
-import { elevation, radius } from "./global"
+import { radius } from "./global"
 import { typeScale } from "./typography"
 export const FormLabel = styled.label`
   font-family: inherit;

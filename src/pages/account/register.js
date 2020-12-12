@@ -35,6 +35,7 @@ const RegisterForm = () => {
   const [lastName, setLastName] = useState(null)
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   return (
     <FormWrapper>
@@ -79,6 +80,7 @@ const RegisterForm = () => {
                   onChange={e => setPassword(e.target.value)}
                 />
               </FormLabel>
+              {errorMessage}
               <SecondarySolidButton
                 style={{ marginTop: "2.4rem" }}
                 className="button"
@@ -95,7 +97,10 @@ const RegisterForm = () => {
                     },
                   })
                     .then(result => {
-                      navigate(`/account/login`)
+                      //TODO: Fix User Authentication
+                      console.log(result.data.customerCreate)
+
+                      //navigate(`/account/login`)
                     })
                     .catch(err => {
                       alert(err)

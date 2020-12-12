@@ -1,13 +1,13 @@
 import React from "react"
 import Image from "gatsby-image"
-import { TextLink, typeScale, radius } from "../../utils"
+import { TextLink, typeScale, radius, Devices } from "../../utils"
 import styled from "styled-components"
-const HorizontalBlogCard = ({ key, image, excerpt, title, link, imageAlt }) => {
+const HorizontalBlogCard = ({ image, excerpt, title, link, imageAlt }) => {
   return (
-    <ArticleCard key={key}>
-      <div>
+    <ArticleCard>
+      <ImageWrapper>
         <Image fluid={image} alt={imageAlt} />
-      </div>
+      </ImageWrapper>
       <article>
         <h2>{title}</h2>
         <p>{excerpt.split(" ").splice(0, 20).join(" ")}... </p>
@@ -24,26 +24,35 @@ const ArticleCard = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: ${radius.medium};
   overflow: hidden;
+  justify-content: center;
 
-  & > div {
-    width: 40%;
-    height: 100%;
-
-    div {
-      width: 100%;
-      height: 100%;
-    }
+  @media ${Devices.tab} {
+    margin-bottom: 5vw;
   }
+
   & > article {
     width: 60%;
     padding: 2.4rem;
+    align-self: center;
 
     h2 {
-      margin-bottom: 1.2rem;
+      margin-bottom: 2.4rem;
       font-size: ${typeScale.header5};
     }
     p {
-      margin-bottom: 0.8rem;
+      margin-bottom: 2.4rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow-y: hidden;
     }
+  }
+`
+const ImageWrapper = styled.div`
+  width: 40%;
+
+  & > div {
+    width: 100%;
+    height: 100%;
   }
 `

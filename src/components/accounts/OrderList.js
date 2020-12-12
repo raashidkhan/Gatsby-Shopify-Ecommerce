@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import {
   radius,
-  SecondaryOutlineButton,
   typeScale,
   SuccessTags,
   InProgressTags,
@@ -137,18 +136,7 @@ const SpaceBetweenBox = styled.div`
   }
 `
 
-const OrderItems = styled.div`
-  /* span {
-    display: inline-block;
-    padding: 0.4rem 0.8rem;
-    margin: 0.8rem;
-    border: 1px solid ${props =>
-    props.theme
-      .secondaryColor};
-    border-radius: ${radius.small};
-    font-size: ${typeScale.helperText};
-  } */
-`
+const OrderItems = styled.div``
 const Image = styled.div`
   width: 20%;
   height: 10rem;
@@ -159,11 +147,4 @@ const Image = styled.div`
     height: 100%;
     object-fit: cover;
   }
-`
-const Expand = styled.button`
-  background: none;
-  border: 1px solid ${props => props.theme.secondaryColor};
-  padding: 0.3rem 0.8rem;
-  font-size: ${typeScale.helperText};
-  border-radius: ${radius.small};
 `
