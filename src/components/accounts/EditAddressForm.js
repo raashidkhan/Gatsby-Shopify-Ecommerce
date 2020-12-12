@@ -13,6 +13,7 @@ import {
   elevation,
   radius,
   neutral,
+  Devices,
 } from "../../utils"
 
 const CUSTOMER_EDIT_ADDRESS = gql`
@@ -279,6 +280,12 @@ const Form = styled.form`
   box-shadow: ${elevation[200]};
   border-radius: ${radius.large};
   position: relative;
+
+  @media ${Devices.tab} {
+    width: 90%;
+    padding-top: 10rem;
+  }
+
   &::-webkit-scrollbar {
     width: 0.6rem;
     border-radius: 0.5rem;

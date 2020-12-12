@@ -13,6 +13,7 @@ import {
   elevation,
   radius,
   neutral,
+  Devices,
 } from "../../utils"
 
 const CUSTOMER_CREATE_ADDRESS = gql`
@@ -207,8 +208,8 @@ const FormWrapper = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 100;
-  //background-color: rgba(255, 255, 255, 0.2);
-  //backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 `
 
 const Form = styled.form`
@@ -222,6 +223,11 @@ const Form = styled.form`
   box-shadow: ${elevation[200]};
   border-radius: ${radius.large};
   position: relative;
+  @media ${Devices.tab} {
+    width: 90%;
+    padding-top: 10rem;
+  }
+
   &::-webkit-scrollbar {
     width: 0.6rem;
     border-radius: 0.5rem;

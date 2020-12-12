@@ -5,7 +5,7 @@ import Layout from "../../components/layout"
 import LoginForm from "../../components/accounts/LoginForm"
 import ForgotPasswordForm from "../../components/accounts/ForgetPasswordForm"
 import styled from "styled-components"
-import { PrimarySolidButton } from "../../utils"
+import { PrimarySolidButton, Devices } from "../../utils"
 import LogInImage from "../../assets/login-image.jpg"
 const Login = () => {
   const [passwordForgot, setPasswordForgot] = useState(false)
@@ -50,6 +50,9 @@ const LoginPageWrapper = styled.section`
   justify-content: center;
   align-items: stretch;
   position: relative;
+  @media ${Devices.tab} {
+    flex-direction: column;
+  }
 `
 
 const LogInImageWrapper = styled.div`
@@ -64,6 +67,11 @@ const LogInImageWrapper = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
 
+  @media ${Devices.tab} {
+    width: 100%;
+    max-height: 45%;
+  }
+
   h3 {
     font-weight: 400;
     margin-bottom: 2.4rem;
@@ -72,4 +80,7 @@ const LogInImageWrapper = styled.div`
 const Form = styled.div`
   width: 55%;
   padding: 5vw;
+  @media ${Devices.tab} {
+    width: 100%;
+  }
 `

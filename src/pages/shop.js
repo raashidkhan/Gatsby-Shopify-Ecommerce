@@ -5,15 +5,20 @@ import ShopHeader from "../components/shop/ShopHeader"
 import ShopListing from "../components/shop/ShopListing"
 const Shop = ({ data }) => {
   const products = data.allShopifyProduct.edges
-  console.log(products)
+  const randomNumber = max => {
+    return Math.floor(Math.random() * Math.floor(max))
+  }
+  const randomProduct = randomNumber(products.length)
   return (
     <Layout>
       <ShopHeader
-        image={products[0].node.images[0].localFile.childImageSharp.fluid}
-        title={products[0].node.title}
-        handle={products[0].node.handle}
-        desc={products[0].node.description}
-        id={products[0].node.variants[0].shopifyId}
+        image={
+          products[randomProduct].node.images[0].localFile.childImageSharp.fluid
+        }
+        title={products[randomProduct].node.title}
+        handle={products[randomProduct].node.handle}
+        desc={products[randomProduct].node.description}
+        id={products[randomProduct].node.variants[0].shopifyId}
       />
 
       <ShopListing products={products} />

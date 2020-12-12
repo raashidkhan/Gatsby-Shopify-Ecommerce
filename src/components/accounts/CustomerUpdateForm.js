@@ -10,6 +10,7 @@ import {
   typeScale,
   SecondarySolidButton,
   SecondaryOutlineButton,
+  Devices,
 } from "../../utils"
 import styled from "styled-components"
 const CUSTOMER_UPDATE = gql`
@@ -142,11 +143,14 @@ const Form = styled.form`
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(25px);
   padding: 5vw;
-
   box-shadow: ${elevation[200]};
   border-radius: ${radius.large};
   position: relative;
   font-weight: 400;
+
+  @media ${Devices.tab} {
+    width: 90%;
+  }
 
   h2 {
     font-size: ${typeScale.header5};

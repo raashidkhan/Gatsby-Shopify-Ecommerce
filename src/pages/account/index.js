@@ -16,6 +16,7 @@ import {
   typeScale,
   radius,
   PrimarySolidButton,
+  Devices,
 } from "../../utils"
 import SkeletonLoader from "../../components/SkeletonLoader"
 
@@ -240,6 +241,9 @@ const NotAuth = styled.div`
 const AccountWrapper = styled.div`
   width: 100vw;
   padding: 5vw;
+  @media ${Devices.tab} {
+    padding-top: 10vw;
+  }
 `
 const AccountIntro = styled.div`
   width: 100%;
@@ -252,6 +256,10 @@ const AccountIntro = styled.div`
   & > h2 {
     font-size: ${typeScale.header3};
     font-weight: 400;
+    @media ${Devices.mobile} {
+      font-size: ${typeScale.header4};
+      width: 70%;
+    }
   }
 `
 const MainSection = styled.section`
@@ -260,12 +268,15 @@ const MainSection = styled.section`
   grid-template-columns: 1fr 2.5fr;
   gap: 5vw;
   position: relative;
+
+  @media ${Devices.tab} {
+    display: block;
+  }
 `
 const AccDetails = styled.aside`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  min-height: 90vh;
   height: 90vh;
   position: sticky;
   top: 5vw;
@@ -273,6 +284,13 @@ const AccDetails = styled.aside`
   border-radius: ${radius.large};
   padding: 2.4rem;
   overflow-y: auto;
+  @media ${Devices.tab} {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: auto;
+    margin: 5vw 0;
+  }
 `
 const OrderDetails = styled.div`
   min-height: 90vh;

@@ -8,6 +8,7 @@ import {
   CancelledTags,
   OutlineTags,
   SmallButton,
+  Devices,
 } from "../../utils"
 import NoImage from "../../assets/No-image-available.png"
 import { Link } from "gatsby"
@@ -121,14 +122,24 @@ const OrderCard = styled.div`
   display: flex;
   justify-content: space-between;
   border: 1px solid rgba(0, 0, 0, 0.1);
+
+  @media ${Devices.mobile} {
+    flex-direction: column;
+  }
 `
 const Details = styled.div`
   width: 70%;
+  @media ${Devices.mobile} {
+    width: 100%;
+  }
 `
 const SpaceBetweenBox = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.8rem;
+  @media ${Devices.mobile} {
+    flex-direction: column;
+  }
 
   a {
     color: ${props => props.theme.primaryColor};
@@ -141,10 +152,16 @@ const Image = styled.div`
   width: 20%;
   height: 10rem;
   align-self: center;
+  @media ${Devices.mobile} {
+    height: auto;
+    width: 100%;
+    margin-top: 2.4rem;
+  }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: ${radius.medium};
   }
 `

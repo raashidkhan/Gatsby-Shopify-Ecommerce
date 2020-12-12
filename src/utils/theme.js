@@ -11,9 +11,9 @@ export const defaultTheme = {
   textOnPrimaryActiveColor: neutral[900],
 
   secondaryColor: green[400],
-  textOnSecondary: neutral[900],
+  textOnSecondary: neutral[100],
   secondaryHoverColor: green[300],
-  textOnSecondaryHoverColor: neutral[200],
+  textOnSecondaryHoverColor: neutral[800],
   secondaryActiveColor: green[300],
   textOnSecondaryActiveColor: neutral[800],
 

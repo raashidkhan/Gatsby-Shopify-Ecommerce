@@ -12,6 +12,7 @@ import {
   FormLabel,
   SecondarySolidButton,
   PrimarySolidButton,
+  Devices,
 } from "../../utils"
 import Layout from "../../components/layout"
 
@@ -98,9 +99,18 @@ const RegisterForm = () => {
                   })
                     .then(result => {
                       //TODO: Fix User Authentication
-                      console.log(result.data.customerCreate)
+                      if (
+                        result.data.customerCreate.customerUserErrors.length
+                      ) {
+                        result.data.customerCreate.customerUserErrors.map(
+                          error => {
+                            setErrorMessage(error.message)
+                          }
+                        )
+                        return
+                      }
 
-                      //navigate(`/account/login`)
+                      navigate(`/account/login`)
                     })
                     .catch(err => {
                       alert(err)
@@ -146,6 +156,9 @@ const SignUpPageWrapper = styled.section`
   height: 100vh;
   position: relative;
   //z-index: -5;
+  @media ${Devices.tab} {
+    flex-direction: column;
+  }
 `
 const SignUpImageWrapper = styled.div`
   width: 45%;
@@ -158,6 +171,10 @@ const SignUpImageWrapper = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  @media ${Devices.tab} {
+    width: 100%;
+    max-height: 45%;
+  }
 
   h3 {
     font-weight: 400;
@@ -168,6 +185,9 @@ const SignUpImageWrapper = styled.div`
 const FormWrapper = styled.div`
   width: 55%;
   padding: 5vw;
+  @media ${Devices.tab} {
+    width: 100%;
+  }
 `
 
 const Form = styled.form`

@@ -3,7 +3,7 @@ import { graphql, Link } from "gatsby"
 import Image from "gatsby-image"
 import Layout from "../components/layout"
 import styled from "styled-components"
-import { radius, typeScale } from "../utils"
+import { Devices, radius, typeScale } from "../utils"
 import parse from "html-react-parser"
 import { SecondarySolidButton } from "../utils"
 const BlogPage = ({ data }) => {
@@ -19,12 +19,24 @@ const BlogPage = ({ data }) => {
           <Image fluid={article.image.localFile.childImageSharp.fluid} />
         </MainImage>
         <h1>{article.title}</h1>
-        <p style={{ textAlign: "center" }}>
+        <p>
           by <em>{article.author.name}</em>
         </p>
       </BlogHeader>
       <BlogBody>
-        <div className="prev">
+        <div
+          className="prev"
+          style={{
+            background: `${
+              previous === null
+                ? "none"
+                : `url(${previous.image.localFile.childImageSharp.fluid.src})`
+            }`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
           {previous === null ? (
             <SecondarySolidButton>
               <Link to={`/blogs/`}>All Blogs</Link>
@@ -36,7 +48,19 @@ const BlogPage = ({ data }) => {
           )}
         </div>
         <article className="body">{parse(article.contentHtml)}</article>
-        <div className="next">
+        <div
+          className="next"
+          style={{
+            background: `${
+              next === null
+                ? "none"
+                : `url(${next.image.localFile.childImageSharp.fluid.src})`
+            }`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
           {next === null ? (
             <SecondarySolidButton>
               <Link to={`/blogs/`}>All Blogs</Link>
@@ -48,7 +72,30 @@ const BlogPage = ({ data }) => {
           )}
         </div>
       </BlogBody>
-      <NextAndPrevWrapper></NextAndPrevWrapper>
+      <NextAndPrevWrapper>
+        <div className="prev">
+          {previous === null ? (
+            <SecondarySolidButton>
+              <Link to={`/blogs/`}>All Blogs</Link>
+            </SecondarySolidButton>
+          ) : (
+            <SecondarySolidButton>
+              <Link to={`/blogs/${previous.handle}`}>Prev</Link>
+            </SecondarySolidButton>
+          )}
+        </div>
+        <div className="next">
+          {next === null ? (
+            <SecondarySolidButton>
+              <Link to={`/blogs/`}>All Blogs</Link>
+            </SecondarySolidButton>
+          ) : (
+            <SecondarySolidButton>
+              <Link to={`/blogs/${next.handle}`}>Next</Link>
+            </SecondarySolidButton>
+          )}
+        </div>
+      </NextAndPrevWrapper>
     </Layout>
   )
 }
@@ -105,11 +152,20 @@ export const query = graphql`
 const BlogHeader = styled.header`
   width: 100vw;
   padding: 5vw;
+  text-align: center;
+  @media ${Devices.tab} {
+    padding-top: 10vw;
+  }
+  @media ${Devices.mobile} {
+    text-align: left;
+  }
 
   h1 {
     font-weight: 400;
     font-size: ${typeScale.header2};
-    text-align: center;
+    @media ${Devices.tab} {
+      font-size: ${typeScale.header3};
+    }
   }
 `
 const MainImage = styled.div`
@@ -118,6 +174,9 @@ const MainImage = styled.div`
   overflow: hidden;
   border-radius: ${radius.large};
   margin-bottom: 2.5vw;
+  @media ${Devices.tab} {
+    height: auto;
+  }
   div {
     width: 100%;
     height: 100%;
@@ -126,19 +185,29 @@ const MainImage = styled.div`
 
 const BlogBody = styled.article`
   width: 100vw;
-  padding: 5vw;
+  padding: 5vw 0;
   display: grid;
   grid-template-columns: 1fr min(70ch, 100%) 1fr;
+  gap: 5vw;
+  @media ${Devices.tab} {
+    gap: 0;
+    padding: 5vw;
+  }
 
   .prev {
     grid-column: 1 / 2;
     position: sticky;
-    top: 0;
+    top: 25vh;
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    border-radius: ${radius.large};
+
+    @media ${Devices.tab} {
+      display: none;
+    }
   }
   .body {
     grid-column: 2 / 3;
@@ -146,12 +215,16 @@ const BlogBody = styled.article`
   .next {
     grid-column: 3 / 4;
     position: sticky;
-    top: 0;
+    top: 25vh;
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+    border-radius: ${radius.large};
+    @media ${Devices.tab} {
+      display: none;
+    }
   }
 
   & > * {
@@ -177,9 +250,13 @@ const BlogBody = styled.article`
   }
 `
 const NextAndPrevWrapper = styled.div`
-  display: flex;
-  width: 100vw;
-  padding: 5vw;
-  justify-content: space-between;
-  padding-top: 0;
+  display: none;
+
+  @media ${Devices.tab} {
+    display: flex;
+    width: 100vw;
+    padding: 5vw;
+    justify-content: space-between;
+    padding-top: 0;
+  }
 `

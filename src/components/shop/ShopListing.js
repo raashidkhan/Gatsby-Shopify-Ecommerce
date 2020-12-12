@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import ProductCard from "../products/productCard"
-import { FormLabel, Select, typeScale } from "../../utils"
+import { Devices, FormLabel, Select, typeScale } from "../../utils"
 const ShopListing = ({ products }) => {
   const [sort, setSort] = useState("featured")
   const [filter, setFilter] = useState("All")
@@ -116,17 +116,29 @@ const ProductListing = styled.section`
 `
 
 const ProductGrid = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 45rem;
   grid-auto-rows: 45rem;
   gap: 2.5vw;
+  @media ${Devices.tab} {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-rows: 1fr;
+    gap: 5vw;
+  }
+  @media ${Devices.mobile} {
+    grid-template-columns: 1fr;
+  }
 `
 
 const SortAndFilter = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 2.4rem 0;
+  background-color: ${props => props.theme.background};
+  position: relative;
 `
 const SortWrapper = styled.div``
 const FilterWrapper = styled.div``

@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { typeScale } from "../../utils"
+import { Devices, typeScale } from "../../utils"
 import ProductCard from "../products/productCard"
 const CollectionProductListing = ({ list, title }) => {
   return (
@@ -44,4 +44,12 @@ const CollectionGrid = styled.div`
   grid-template-rows: 50rem;
   grid-auto-rows: 50rem;
   gap: 2.5vw;
+
+  @media ${Devices.tab} {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media ${Devices.mobile} {
+    grid-template-columns: 1fr;
+    gap: 5vw;
+  }
 `

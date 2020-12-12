@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { radius, SmallButton, typeScale } from "../../utils"
+import { Devices, radius, SmallButton, typeScale } from "../../utils"
 import DeleteAddress from "../accounts/DeleteAddress"
 import EditAddress from "../accounts/EditAddressForm"
 const SavedAddress = ({ addresses, addressFormToggle }) => {
@@ -100,6 +100,10 @@ const AddressWrapper = styled.div`
   grid-template-rows: 1fr;
   grid-auto-rows: 1fr;
   gap: 2.4rem;
+
+  @media ${Devices.tab} {
+    grid-template-columns: 1fr;
+  }
 `
 
 const AddressCard = styled.address`
