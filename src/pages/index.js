@@ -22,6 +22,7 @@ const PageWrapper = styled.div`
   width: 100vw;
   padding: 5vw;
   padding-bottom: 0;
+  overflow-x: hidden;
 
   @media ${Devices.tab} {
     padding-top: 10vw;

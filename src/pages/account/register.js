@@ -98,7 +98,6 @@ const RegisterForm = () => {
                     },
                   })
                     .then(result => {
-                      //TODO: Fix User Authentication
                       if (
                         result.data.customerCreate.customerUserErrors.length
                       ) {
