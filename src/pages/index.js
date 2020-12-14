@@ -6,12 +6,16 @@ import NewArrivals from "../components/homepage/NewArrivals"
 import Articles from "../components/homepage/Articles"
 import styled from "styled-components"
 import { Devices } from "../utils"
+import BestSellers from "../components/homepage/BestSellers"
+import ShopAll from "../components/homepage/ShopAll"
 const IndexPage = () => (
   <Layout>
     <PageWrapper>
       <Hero />
       <Collection />
       <NewArrivals />
+      <BestSellers />
+      <ShopAll />
       <Articles />
     </PageWrapper>
   </Layout>

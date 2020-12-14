@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import Image from "gatsby-image"
 import AddToCartButton from "../buttons/AddToCartButton"
-import { radius, typeScale, SecondarySolidButton } from "../../utils"
+import { radius, typeScale, SecondarySolidButton, Devices } from "../../utils"
 import CounterButton from "../buttons/CounterButtons"
 const ProductDetails = ({
   link,
@@ -54,6 +54,10 @@ const ProductSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+
+  @media ${Devices.tabL} {
+    flex-direction: column;
+  }
 `
 
 const ProductImages = styled.div`
@@ -62,6 +66,11 @@ const ProductImages = styled.div`
   position: sticky;
   top: 0;
   left: 0;
+  @media ${Devices.tabL} {
+    position: relative;
+    height: auto;
+    width: 100%;
+  }
 
   div {
     width: 100%;
@@ -74,6 +83,11 @@ const ProductDesc = styled.div`
   width: 50%;
   padding-left: 5vw;
   padding-top: 5vw;
+  @media ${Devices.tabL} {
+    width: 100%;
+    padding-left: 0;
+    padding-top: 10vw;
+  }
 
   & > h1 {
     font-size: ${typeScale.header3};

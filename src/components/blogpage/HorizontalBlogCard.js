@@ -1,6 +1,6 @@
 import React from "react"
 import Image from "gatsby-image"
-import { TextLink, typeScale, radius, Devices } from "../../utils"
+import { TextLink, typeScale, radius, Devices, elevation } from "../../utils"
 import styled from "styled-components"
 const HorizontalBlogCard = ({ image, title, link, imageAlt }) => {
   return (
@@ -22,6 +22,7 @@ export default HorizontalBlogCard
 
 const ArticleCard = styled.div`
   overflow: hidden;
+  width: 100%;
 
   @media ${Devices.tab} {
     margin-bottom: 5vw;
@@ -34,6 +35,7 @@ const ArticleCard = styled.div`
     h2 {
       margin-bottom: 2.4rem;
       font-size: ${typeScale.header5};
+      font-weight: 400;
     }
   }
 `
@@ -43,7 +45,14 @@ const ImageWrapper = styled.div`
   position: relative;
   border-radius: ${radius.medium};
   overflow: hidden;
+  box-shadow: ${elevation[200]};
 
+  @media ${Devices.tab} {
+    height: 30rem;
+  }
+  @media ${Devices.mobile} {
+    height: 20rem;
+  }
   & > div {
     width: 100%;
     height: 100%;

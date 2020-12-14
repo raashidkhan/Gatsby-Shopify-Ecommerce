@@ -1,14 +1,28 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
+import Image from "gatsby-image"
 import { PrimarySolidButton, typeScale, radius, Devices } from "../../utils"
-import HeroImage from "../../assets/hero.jpg"
+//import HeroImage from "../../assets/hero.jpg"
 
 const Hero = () => {
+  const data = useStaticQuery(graphql`
+    {
+      file(relativePath: { eq: "hero-2.jpg" }) {
+        relativePath
+        childImageSharp {
+          fluid(quality: 100, maxWidth: 1200) {
+            ...GatsbyImageSharpFluid_withWebp_noBase64
+          }
+        }
+      }
+    }
+  `)
+  const HeroImage = data.file.childImageSharp.fluid
   return (
     <HeroHeader>
       <HeroHeaderImage>
-        <img src={HeroImage} alt="" />
+        <Image fluid={HeroImage} />
       </HeroHeaderImage>
       <HeroHeaderTitle>
         <span>We help your keep your surrounding green and clean.</span>
@@ -43,10 +57,9 @@ const HeroHeaderImage = styled.div`
   border-radius: ${radius.large};
   overflow: hidden;
 
-  img {
+  div {
     width: 100%;
     height: 100%;
-    object-fit: cover;
   }
 `
 const HeroHeaderTitle = styled.h1`

@@ -63,15 +63,16 @@ const BounceBall = styled.div`
   height: 100%;
   position: absolute;
   width: 100%;
-  background: ${props => props.color};
+  //background: ${props => props.color};
+  background-color: white;
 `
 
 const BounceBallOne = styled(BounceBall)`
-  animation: ${move1} 1s ease-in-out infinite alternate;
+  animation: ${move1} 0.7s ease-in-out infinite alternate;
 `
 const BounceBallTwo = styled(BounceBall)`
-  animation: ${move2} 1s ease-in-out infinite alternate;
+  animation: ${move2} 0.7s ease-in-out infinite alternate;
 `
 const BounceBallThree = styled(BounceBall)`
-  animation: ${move3} 1s ease-in-out infinite alternate;
+  animation: ${move3} 0.7s ease-in-out infinite alternate;
 `

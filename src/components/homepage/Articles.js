@@ -36,9 +36,11 @@ const Articles = () => {
   const articles = data.allShopifyArticle.nodes
   return (
     <>
-      <BlogHeading>Latest from our blogs</BlogHeading>
-
-      <Slide>
+      <Slide
+        slideWidth={42}
+        slideHeading="Latest from our blogs"
+        viewAll={`/blogs`}
+      >
         {articles.slice(0).map((item, index) => {
           return (
             <ArticleCard

@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Devices, typeScale } from "../../utils"
 import ProductCard from "../products/productCard"
 const CollectionProductListing = ({ list, title }) => {
+  console.log(list)
   return (
     <CollectionWrapper>
       <h2>Our {title} collection</h2>
@@ -11,7 +12,7 @@ const CollectionProductListing = ({ list, title }) => {
         {list.map(item => {
           return (
             <ProductCard
-              key={item.id}
+              key={item.shopifyId}
               image={item.images[0].localFile.childImageSharp.fluid}
               name={item.title}
               price={item.variants[0].price}

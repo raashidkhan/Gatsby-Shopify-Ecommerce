@@ -13,7 +13,9 @@ const CollectionHeader = ({ title, desc, image }) => {
       </CollectionImage>
       <CollectionDesc>
         <h1>{title}</h1>
-        <article>{collectionDescription}</article>
+        <article>
+          {collectionDescription === null ? "" : collectionDescription}
+        </article>
       </CollectionDesc>
     </Collection>
   )

@@ -3,12 +3,12 @@ import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
 import styled from "styled-components"
 import { Link } from "gatsby"
-import { typeScale, neutral, radius, Devices } from "../../utils"
+import { typeScale, neutral, radius, Devices, elevation } from "../../utils"
 
 const Collection = () => {
   const data = useStaticQuery(graphql`
     {
-      allShopifyCollection {
+      allShopifyCollection(limit: 3, sort: { order: ASC, fields: updatedAt }) {
         nodes {
           title
           shopifyId
@@ -93,12 +93,14 @@ const CollectionItemName = styled.figcaption`
   transform: translateX(-50%);
   z-index: 5;
   font-size: ${typeScale.header4};
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+
   padding: 1.6rem;
-  color: ${neutral[800]};
+  color: ${neutral[100]};
   font-family: inherit;
   border-radius: ${radius.large};
+  box-shadow: ${elevation[100]};
   @media ${Devices.tab} {
     font-size: ${typeScale.header5};
   }
