@@ -24,18 +24,20 @@ const OrderList = ({ orders }) => {
             <Details>
               <SpaceBetweenBox>
                 <p>
-                  <strong>Order No.</strong>&nbsp;{order.node.name}
+                  <strong>Order No.</strong>&nbsp;
+                  {order.node.name === null ? "" : order.node.name}
                 </p>
                 <p>
-                  <strong>Price</strong>&nbsp;{order.node.totalPrice}
-                  {order.node.currencyCode}
+                  <strong>Price</strong>&nbsp;
+                  {order.node.totalPrice ? "" : order.node.totalPrice}
+                  {order.node.currencyCode ? "" : order.node.currencyCode}
                 </p>
               </SpaceBetweenBox>
               <SpaceBetweenBox>
                 <p>
                   {" "}
                   <strong>Purchased on:</strong>&nbsp;
-                  {order.node.processedAt.slice(0, 10)}{" "}
+                  {order.node.processedAt.slice(0, 10)}
                 </p>
                 <a href={order.node.statusUrl}>View Status</a>
               </SpaceBetweenBox>
@@ -48,10 +50,11 @@ const OrderList = ({ orders }) => {
                     {order.node.lineItems.edges
                       .slice(0, numberOfItem)
                       .map(i => {
+                        console.log(i)
                         return (
                           <OutlineTags key={i.node.title}>
                             <Link
-                              to={`/product/${i.node.variant.product.handle}`}
+                              to={`/product/${i.node.variant?.product.handle}`}
                             >
                               {i.node.title}
                             </Link>

@@ -37,17 +37,14 @@ export default ShopHeader
 
 const Header = styled.header`
   width: 100vw;
-  height: 100vh;
+  min-height: 70vh;
   padding: 5vw;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 
   @media ${Devices.tab} {
-    min-height: 45vh;
-    height: auto;
-    align-items: center;
-    padding-top: 10vw;
+    padding-top: 7.5rem;
   }
   @media ${Devices.mobile} {
     flex-direction: column-reverse;

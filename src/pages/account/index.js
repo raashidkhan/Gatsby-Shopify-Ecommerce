@@ -172,11 +172,11 @@ const Index = () => {
                 email,
                 phone,
               } = data.customer
-
+              console.log(data)
               return (
                 <>
                   <AccountIntro>
-                    <h2>Welcome Back {firstName} </h2>
+                    <h2>Welcome Back {firstName === null ? "" : firstName} </h2>
                     <SecondaryOutlineButton>
                       <Logout />
                     </SecondaryOutlineButton>
@@ -184,11 +184,11 @@ const Index = () => {
                   <MainSection>
                     <AccDetails className="accountDetails">
                       <CustomerDetails
-                        firstName={firstName}
-                        lastName={lastName}
-                        address={defaultAddress}
-                        email={email}
-                        phone={phone}
+                        firstName={firstName === null ? "" : firstName}
+                        lastName={lastName === null ? "" : lastName}
+                        address={defaultAddress === null ? "" : defaultAddress}
+                        email={email === null ? "" : email}
+                        phone={phone === null ? "" : phone}
                       />
                     </AccDetails>
                     <OrderDetails className="orderList">
@@ -242,7 +242,7 @@ const AccountWrapper = styled.div`
   width: 100vw;
   padding: 5vw;
   @media ${Devices.tab} {
-    padding-top: 10vw;
+    padding-top: 10rem;
   }
 `
 const AccountIntro = styled.div`

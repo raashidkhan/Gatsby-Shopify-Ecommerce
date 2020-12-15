@@ -154,7 +154,7 @@ const BlogHeader = styled.header`
   padding: 5vw;
   text-align: center;
   @media ${Devices.tab} {
-    padding-top: 10vw;
+    padding-top: 7.5rem;
   }
   @media ${Devices.mobile} {
     text-align: left;

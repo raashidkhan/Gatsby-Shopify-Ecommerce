@@ -36,12 +36,12 @@ export default ProductPage
 
 const ProductCollection = styled.section`
   width: 100%;
-  padding: 5vw;
-  padding-bottom: 0;
+  padding: 5vw 0;
 
   h2 {
-    margin-bottom: 2.4rem;
+    margin-bottom: 3.2rem;
     font-weight: 400;
+    padding-left: 5vw;
   }
 `
 

@@ -1,6 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import ProductCard from "../products/productCard"
+import SmallProductCard from "../products/SmallProductCard"
 import styled from "styled-components"
 import { typeScale, radius, neutral, Devices } from "../../utils"
 
@@ -36,7 +37,10 @@ const NewArrivals = () => {
             variants {
               id
               title
-              price
+              priceV2 {
+                amount
+                currencyCode
+              }
               shopifyId
             }
           }
@@ -50,15 +54,17 @@ const NewArrivals = () => {
       <NewArrivalHeading>New Arrivals</NewArrivalHeading>
 
       <NewArrivalGrid>
-        {data.allShopifyProduct.edges.slice(0, 6).map(item => {
+        {data.allShopifyProduct.edges.slice(0, 8).map(item => {
+          console.log(item)
           return (
-            <ProductCard
+            <SmallProductCard
               key={item.node.id}
+              id={item.node.id}
               image={item.node.images[0].localFile.childImageSharp.fluid}
-              name={item.node.title}
-              price={item.node.variants[0].price}
-              id={item.node.variants[0].shopifyId}
-              link={item.node.handle}
+              handle={item.node.handle}
+              title={item.node.title}
+              currency={item.node.variants[0].priceV2.currencyCode}
+              price={item.node.variants[0].priceV2.amount}
             />
           )
         })}
@@ -70,8 +76,11 @@ const NewArrivals = () => {
 export default NewArrivals
 
 const NewArrivalWrapper = styled.section`
-  width: 100%;
-  margin-bottom: 10vw;
+  width: 100vw;
+  padding: 5vw;
+  @media ${Devices.tab} {
+    padding-top: 10vw;
+  }
 `
 
 const NewArrivalHeading = styled.h2`
@@ -85,10 +94,10 @@ const NewArrivalHeading = styled.h2`
 
 const NewArrivalGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 40rem;
-  grid-auto-rows: 40rem;
-  gap: 2.5vw;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 3.2rem;
   padding: 2.4rem 0;
   @media ${Devices.tab} {
     padding: 2.5vw 0;
@@ -99,7 +108,7 @@ const NewArrivalGrid = styled.div`
     gap: 5vw;
   }
   @media ${Devices.mobile} {
-    grid-template-columns: 90%;
-    grid-auto-columns: 90%;
+    grid-template-columns: 80%;
+    grid-auto-columns: 80%;
   }
 `

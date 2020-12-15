@@ -63,8 +63,8 @@ const BounceBall = styled.div`
   height: 100%;
   position: absolute;
   width: 100%;
-  //background: ${props => props.color};
-  background-color: white;
+  background: ${props => (props ? props.color : "#fff")};
+  //background-color: red;
 `
 
 const BounceBallOne = styled(BounceBall)`

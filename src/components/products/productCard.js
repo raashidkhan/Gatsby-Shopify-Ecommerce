@@ -60,13 +60,16 @@ const ProductImage = styled(Link)`
   border-radius: ${radius.large};
   overflow: hidden;
   height: 65%;
-
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   div {
     height: 100%;
     overflow: hidden;
 
     img {
       border-radius: ${radius.large};
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
   }
 `

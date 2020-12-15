@@ -30,6 +30,12 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allShopifyShopPolicy {
+        nodes {
+          handle
+          shopifyId
+        }
+      }
     }
   `)
 
@@ -68,6 +74,15 @@ exports.createPages = async ({ graphql, actions }) => {
         slug: item.node.handle,
         next: nextArticle,
         previous: previousArticle,
+      },
+    })
+  })
+  result.data.allShopifyShopPolicy.nodes.forEach(item => {
+    createPage({
+      path: `/policy/${item.handle}`,
+      component: path.resolve(`src/templates/Policy.js`),
+      context: {
+        slug: item.handle,
       },
     })
   })

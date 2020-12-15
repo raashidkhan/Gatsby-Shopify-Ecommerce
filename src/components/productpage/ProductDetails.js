@@ -57,6 +57,7 @@ const ProductSection = styled.div`
 
   @media ${Devices.tabL} {
     flex-direction: column;
+    padding-top: 7.5rem;
   }
 `
 
@@ -94,6 +95,9 @@ const ProductDesc = styled.div`
     font-weight: 400;
     margin-bottom: 1.4rem;
     width: 70%;
+    @media ${Devices.tabL} {
+      width: 100%;
+    }
   }
 
   & > h3 {
@@ -121,7 +125,7 @@ const ProductDesc = styled.div`
   }
 
   & > article {
-    margin-top: 2.5vw;
+    margin-top: 3.2rem;
 
     h4 {
       font-size: ${typeScale.header5};

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
-import { SmallButton, Devices, typeScale } from "../utils"
+import { elevation, Devices, typeScale, radius } from "../utils"
 const Slide = ({ children, slideWidth, slideHeading, viewAll }) => {
   const ref = useRef()
   const [move, setMove] = useState(0)
@@ -157,12 +157,12 @@ const SlideContainer = styled.div`
   transition: all 300ms ease-in-out;
 
   @media ${Devices.tab} {
-    grid-template-columns: 60%;
-    grid-auto-columns: 60%;
+    grid-template-columns: 40%;
+    grid-auto-columns: 40%;
     overflow-x: auto;
   }
-  @media ${Devices.tab} {
-    grid-template-columns: 90%;
-    grid-auto-columns: 90%;
+  @media ${Devices.mobile} {
+    grid-template-columns: 80%;
+    grid-auto-columns: 80%;
   }
 `

@@ -8,7 +8,7 @@ import { typeScale, neutral, radius, Devices, elevation } from "../../utils"
 const Collection = () => {
   const data = useStaticQuery(graphql`
     {
-      allShopifyCollection(limit: 3, sort: { order: ASC, fields: updatedAt }) {
+      allShopifyCollection {
         nodes {
           title
           shopifyId
@@ -26,11 +26,15 @@ const Collection = () => {
       }
     }
   `)
+  const collectionList = data.allShopifyCollection.nodes.filter(item => {
+    return item.title !== "Best Seller"
+  })
+
   return (
     <>
       <ProductCollectionWrapper>
         <CollectionItems>
-          {data.allShopifyCollection.nodes.map(item => {
+          {collectionList.slice(0, 3).map(item => {
             return (
               <CollectionItemDetails
                 to={`/collection/${item.handle}`}
@@ -52,15 +56,19 @@ const Collection = () => {
 export default Collection
 
 const ProductCollectionWrapper = styled.section`
-  width: 100%;
-  margin-bottom: 10vw;
+  width: 100vw;
+  padding: 5vw;
+  padding-top: 3.2rem;
+  @media ${Devices.tab} {
+    padding-top: 0;
+  }
 `
 
 const CollectionItems = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  gap: 2.5vw;
+  gap: 3.2rem;
   @media ${Devices.tab} {
     gap: 5vw;
   }
@@ -79,7 +87,7 @@ const CollectionItemImage = styled.div`
   width: 100%;
 
   div {
-    height: 35rem;
+    height: 30rem;
     @media ${Devices.tab} {
       height: 20rem;
     }
@@ -93,14 +101,19 @@ const CollectionItemName = styled.figcaption`
   transform: translateX(-50%);
   z-index: 5;
   font-size: ${typeScale.header4};
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(15px);
-
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 1.6rem;
-  color: ${neutral[100]};
+  color: ${props => props.theme.textOnSecondary};
   font-family: inherit;
   border-radius: ${radius.large};
-  box-shadow: ${elevation[100]};
+  //box-shadow: ${elevation[200]};
+  @supports (
+    (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))
+  ) {
+    background-color: rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
   @media ${Devices.tab} {
     font-size: ${typeScale.header5};
   }

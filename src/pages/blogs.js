@@ -36,7 +36,7 @@ const Blog = () => {
   const articles = data.allShopifyArticle.nodes
   return (
     <Layout>
-      <FirstArticle className="firstArticle">
+      <FirstArticle>
         <ArticleImage>
           <Tag>Latest</Tag>
           <Image fluid={articles[0].image.localFile.childImageSharp.fluid} />
@@ -77,7 +77,7 @@ const FirstArticle = styled.header`
     margin-bottom: 1.2rem;
   }
   @media ${Devices.tab} {
-    padding-top: 10vw;
+    padding-top: 7.5rem;
   }
 `
 const Tag = styled(SuccessTags)`

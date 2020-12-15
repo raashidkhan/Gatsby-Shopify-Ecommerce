@@ -4,6 +4,7 @@ import styled from "styled-components"
 import Image from "gatsby-image"
 import { radius, TextLink, typeScale, Devices } from "../../utils"
 import Slide from "../Slide"
+import SmallProductCard from "../products/SmallProductCard"
 const BestSellers = () => {
   const data = useStaticQuery(graphql`
     {
@@ -45,22 +46,15 @@ const BestSellers = () => {
       >
         {productList.slice(0, 12).map(item => {
           return (
-            <Card key={item.id}>
-              <Link to={`/product/${item.handle}`}>
-                <CardImage>
-                  <Image
-                    fluid={
-                      item.variants[0].image.localFile.childImageSharp.fluid
-                    }
-                  />
-                </CardImage>
-                <CardTitle>{item.title}</CardTitle>
-                <CardPrice>
-                  {item.variants[0].priceV2.currencyCode} &nbsp;
-                  {item.variants[0].priceV2.amount}
-                </CardPrice>
-              </Link>
-            </Card>
+            <SmallProductCard
+              key={item.id}
+              id={item.id}
+              image={item.variants[0].image.localFile.childImageSharp.fluid}
+              handle={item.handle}
+              title={item.title}
+              currency={item.variants[0].priceV2.currencyCode}
+              price={item.variants[0].priceV2.amount}
+            />
           )
         })}
       </Slide>
@@ -70,35 +64,10 @@ const BestSellers = () => {
 
 export default BestSellers
 const BestSelling = styled.section`
-  margin-bottom: 10vw;
-`
-const BestSellingHeading = styled.h2`
-  font-size: ${typeScale.header4};
-  text-transform: uppercase;
-  letter-spacing: 8px;
-  margin-bottom: 1.4rem;
-  text-align: center;
-  font-weight: 400;
-  margin-bottom: 2.5vw;
-  @media ${Devices.mobile} {
-    text-align: left;
+  width: 100vw;
+  padding: 5vw;
+  overflow-x: hidden;
+  @media ${Devices.tab} {
+    padding-top: 10vw;
   }
-`
-const Card = styled.figure``
-const CardImage = styled.div`
-  height: 30rem;
-  border-radius: ${radius.medium};
-  overflow: hidden;
-  margin-bottom: 2.4rem;
-  div {
-    width: 100%;
-    height: 100%;
-  }
-`
-const CardTitle = styled.h2`
-  font-weight: 400;
-  font-size: ${typeScale.header5};
-`
-const CardPrice = styled.p`
-  color: ${props => props.theme.primaryColor};
 `

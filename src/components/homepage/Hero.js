@@ -20,32 +20,43 @@ const Hero = () => {
   `)
   const HeroImage = data.file.childImageSharp.fluid
   return (
-    <HeroHeader>
-      <HeroHeaderImage>
-        <Image fluid={HeroImage} />
-      </HeroHeaderImage>
-      <HeroHeaderTitle>
-        <span>We help your keep your surrounding green and clean.</span>
-        <Link to="#">
-          <PrimarySolidButton>Shop Now</PrimarySolidButton>
-        </Link>
-      </HeroHeaderTitle>
-    </HeroHeader>
+    <HeroWrapper>
+      <HeroHeader>
+        <HeroHeaderImage>
+          <Image fluid={HeroImage} />
+        </HeroHeaderImage>
+        <HeroHeaderTitle>
+          <span>We help your keep your surrounding green and clean.</span>
+          <Link to="#">
+            <PrimarySolidButton>Shop Now</PrimarySolidButton>
+          </Link>
+        </HeroHeaderTitle>
+      </HeroHeader>
+    </HeroWrapper>
   )
 }
 
 export default Hero
-
-const HeroHeader = styled.header`
-  width: 100%;
-  height: 60vh;
-  position: relative;
-  margin-bottom: 2.5vw;
+const HeroWrapper = styled.header`
+  width: 100vw;
+  height: 70vh;
+  padding: 5vw;
+  padding-bottom: 0;
 
   @media ${Devices.tab} {
-    height: 45vh;
-    margin-bottom: 5vw;
+    min-height: 50vh;
+    //margin-top: 10rem;
+    padding-bottom: 5vw;
+    padding-top: 7.5rem;
   }
+`
+const HeroHeader = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: ${radius.large};
+  overflow-x: hidden;
+  overflow-y: hidden;
 `
 
 const HeroHeaderImage = styled.div`
@@ -54,7 +65,7 @@ const HeroHeaderImage = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: ${radius.large};
+  //border-radius: ${radius.large};
   overflow: hidden;
 
   div {

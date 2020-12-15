@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-import { radius, TextLink, typeScale, Devices } from "../../utils"
+import { radius, TextLink, typeScale, Devices, green } from "../../utils"
 import ArticleCard from "../blogpage/HorizontalBlogCard"
 import Slide from "../Slide"
 const Articles = () => {
@@ -35,7 +35,7 @@ const Articles = () => {
   `)
   const articles = data.allShopifyArticle.nodes
   return (
-    <>
+    <Blogs>
       <Slide
         slideWidth={42}
         slideHeading="Latest from our blogs"
@@ -55,21 +55,18 @@ const Articles = () => {
           )
         })}
       </Slide>
-    </>
+    </Blogs>
   )
 }
 
 export default Articles
 
-const BlogHeading = styled.h2`
-  font-size: ${typeScale.header4};
-  text-transform: uppercase;
-  letter-spacing: 8px;
-  margin-bottom: 1.4rem;
-  text-align: center;
-  font-weight: 400;
-  margin-bottom: 2.5vw;
-  @media ${Devices.mobile} {
-    text-align: left;
+const Blogs = styled.section`
+  width: 100vw;
+  padding: 5vw;
+  background-color: ${green[100]};
+
+  @media ${Devices.tab} {
+    margin-top: 5vw;
   }
 `

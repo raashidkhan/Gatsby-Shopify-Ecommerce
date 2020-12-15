@@ -6,12 +6,22 @@ import StoreContext from "../../context/store"
 import Cart from "../cart/cartWindow"
 import Logo from "../../assets/logo.svg"
 import styled from "styled-components"
-import { neutral, red, Devices, typeScale } from "../../utils"
+import { neutral, red, Devices, typeScale, elevation } from "../../utils"
 
 const Header = () => {
-  const { customerAccessToken, isCartOpen, toggleCart } = useContext(
+  const { customerAccessToken, checkout, isCartOpen, toggleCart } = useContext(
     StoreContext
   )
+  const numberOfItemsArray = []
+  checkout.lineItems.map(item => {
+    numberOfItemsArray.push(item.quantity)
+  })
+  const reducer = (accumulator, currentValue) => accumulator + currentValue
+  //const NoOfCartItem = numberOfItemsArray.reduce(reducer)
+  let NoOfCartItem = 0
+  if (numberOfItemsArray.length) {
+    NoOfCartItem = numberOfItemsArray.reduce(reducer)
+  }
   const [isOpen, setIsOpen] = useState(false)
 
   const animation = useSpring({
@@ -39,9 +49,7 @@ const Header = () => {
             <MobileMenuItem>
               <Link to="/blogs">Blog</Link>
             </MobileMenuItem>
-            <MobileMenuItem>
-              <Link to="/account">Contact</Link>
-            </MobileMenuItem>
+
             <MobileMenuItem>
               {isAuthenticated ? (
                 <Link to="/account">Account</Link>
@@ -89,6 +97,8 @@ const Header = () => {
         </DesktopMenu>
       </Menu>
       <CartButton onClick={toggleCart}>
+        {NoOfCartItem > 0 ? <Items>{NoOfCartItem}</Items> : ""}
+
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89.087 81.655">
           <g
             id="Group_7"
@@ -153,17 +163,16 @@ const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5vw;
+  padding: 2rem 5vw;
   position: fixed;
   top: 0;
   left: 0;
-  height: 5vw;
+
   z-index: 100;
-  //background-color: ${props => props.theme.background};
-  /* background-color: hsla(13, 70%, 100%, 0.4);
-  backdrop-filter: blur(15px); */
+  background-color: ${props => props.theme.background};
+  box-shadow: ${elevation[100]}; //background-color: hsla(13, 70%, 100%, 0.4);
+  //backdrop-filter: blur(15px);
   @media ${Devices.tab} {
-    padding: 5vw;
   }
 `
 
@@ -292,4 +301,15 @@ const CartButton = styled.button`
     width: 100%;
     height: 100%;
   }
+`
+const Items = styled.span`
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  background-color: ${props => props.theme.secondaryColor};
+  color: ${props => props.theme.textOnSecondary};
+  min-width: 2rem;
+  min-height: 2rem;
+  display: block;
+  border-radius: 2rem;
 `

@@ -10,25 +10,13 @@ import BestSellers from "../components/homepage/BestSellers"
 import ShopAll from "../components/homepage/ShopAll"
 const IndexPage = () => (
   <Layout>
-    <PageWrapper>
-      <Hero />
-      <Collection />
-      <NewArrivals />
-      <BestSellers />
-      <ShopAll />
-      <Articles />
-    </PageWrapper>
+    <Hero />
+    <Collection />
+    <NewArrivals />
+    <BestSellers />
+    <ShopAll />
+    <Articles />
   </Layout>
 )
 
 export default IndexPage
-const PageWrapper = styled.div`
-  width: 100vw;
-  padding: 5vw;
-  padding-bottom: 0;
-  overflow-x: hidden;
-
-  @media ${Devices.tab} {
-    padding-top: 10vw;
-  }
-`

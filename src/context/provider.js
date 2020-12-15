@@ -93,7 +93,7 @@ const Provider = ({ children }) => {
 
           navigate(addItem.webUrl)
         },
-        addToCart: async (variantId, quantity, setIsLoading) => {
+        addToCart: async (variantId, quantity, setIsLoading, setIsLoaded) => {
           setIsLoading(true)
           console.log(variantId, quantity)
           const lineItem = [
@@ -107,15 +107,20 @@ const Provider = ({ children }) => {
             checkout.id,
             lineItem
           )
-          console.log(newCheckout)
+          setIsLoaded(true)
+          setTimeout(() => {
+            setIsLoaded(false)
+          }, 1000)
           setIsLoading(false)
           setCheckout(newCheckout)
         },
-        removeFromCart: async lineItemId => {
+        removeFromCart: async (lineItemId, setIsLoading) => {
+          setIsLoading(true)
           const newCheckout = await store.client.checkout.removeLineItems(
             checkout.id,
             [lineItemId]
           )
+          setIsLoading(false)
           setCheckout(newCheckout)
         },
       }}

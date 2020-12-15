@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import { defaultTheme, GlobalStyle } from "../utils"
 import GlobalFonts from "../fonts/fonts"
 import Header from "./header/header"
+import Footer from "./Footer"
 import { ThemeProvider } from "styled-components"
 //import "./layout.css"
 
@@ -24,10 +25,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <Header siteTitle={data.site.siteMetadata.title} />
       <main className="main">{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
+      <Footer />
     </ThemeProvider>
   )
 }

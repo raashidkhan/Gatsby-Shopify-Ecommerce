@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import Store from "../../context/store"
 import styled from "styled-components"
 
@@ -14,6 +14,7 @@ import {
   CartHeading,
 } from "./cartWindowStyles"
 import { PrimarySolidButton } from "../../utils"
+import RemoveButton from "../buttons/RemoveButton"
 const CartWindow = () => {
   const { checkout, toggleCart, removeFromCart } = useContext(Store)
 
@@ -43,16 +44,23 @@ const CartWindow = () => {
                 <p>{item.title}</p>
                 <strong>{item.variant.price}</strong>
               </CartItemContent>
-              <RemoveItemButton
+              {/* <RemoveItemButton
                 title="Remove Item"
                 aria-label="Remove Item"
                 onClick={() => {
-                  removeFromCart(item.id)
+                  removeFromCart(item.id, setIsLoading)
                 }}
               >
-                <span className="one"></span>
-                <span className="two"></span>
-              </RemoveItemButton>
+                {isLoading ? (
+                  <Loader />
+                ) : (
+                  <>
+                    <span className="one"></span>
+                    <span className="two"></span>
+                  </>
+                )}
+              </RemoveItemButton> */}
+              <RemoveButton id={item.id} />
             </CartItemWrapper>
           )
         })}

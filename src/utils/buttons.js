@@ -72,9 +72,8 @@ export const SecondarySolidButton = styled(Button)`
     transform: translateY(-2px);
   }
   &:focus {
-    outline: 1px solid rgba(0, 0, 0, 0.3);
+    outline: none;
     transform: translateY(-3px);
-    outline-offset: 2px;
   }
   &:active {
     outline: none;
