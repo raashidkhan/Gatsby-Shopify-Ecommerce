@@ -64,11 +64,11 @@ const Header = () => {
         </DesktopMenu>
       </Menu>
       <CartButton onClick={toggleCart}>
-        {checkout.lineItems.length === 0 || null ? (
+        {/* {checkout.lineItems.length === 0 || null ? (
           ""
         ) : (
           <Items>checkout.lineItems.length</Items>
-        )}
+        )} */}
 
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89.087 81.655">
           <g
