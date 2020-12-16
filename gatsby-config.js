@@ -38,16 +38,16 @@ module.exports = {
     {
       resolve: `gatsby-plugin-apollo-shopify`,
       options: {
-        shopName: process.env.SHOPIFY_STORE_NAME,
-        accessToken: process.env.SHOPIFY_API_KEY,
+        shopName: process.env.GATSBY_SHOPIFY_STORE_NAME,
+        accessToken: process.env.GATSBY_SHOPIFY_API_KEY,
         apiVersion: "2020-10",
       },
     },
     {
       resolve: "gatsby-source-shopify",
       options: {
-        shopName: process.env.SHOPIFY_STORE_NAME,
-        accessToken: process.env.SHOPIFY_API_KEY,
+        shopName: process.env.GATSBY_SHOPIFY_STORE_NAME,
+        accessToken: process.env.GATSBY_SHOPIFY_API_KEY,
       },
     },
   ],

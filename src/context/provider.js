@@ -17,7 +17,7 @@ const Provider = ({ children }) => {
     try {
       return JSON.parse(localStorage.getItem(value))
     } catch (e) {
-      return ""
+      console.error(e)
     }
   }
   const createNewCheckout = async () => {
