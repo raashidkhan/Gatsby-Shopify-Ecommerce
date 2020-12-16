@@ -7,30 +7,13 @@ import {
   Devices,
   neutral,
 } from "../../utils"
+
 export const Cart = styled.aside`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 40vw;
-  height: 100vh;
-  background-color: white;
-  z-index: 200;
+  height: 100%;
   box-shadow: ${elevation[200]};
   padding: 2.4rem;
   border-top-left-radius: ${radius.large};
   border-bottom-left-radius: ${radius.large};
-  background-color: ${props => props.theme.background};
-
-  @supports (
-    (-webkit-backdrop-filter: blur(15px)) or (backdrop-filter: blur(15px))
-  ) {
-    background-color: rgba(255, 255, 255, 0.4);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-  }
-  @media ${Devices.mobile} {
-    width: 100vw;
-  }
 `
 export const CartHeading = styled.div`
   display: flex;

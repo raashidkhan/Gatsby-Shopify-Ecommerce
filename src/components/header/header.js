@@ -1,33 +1,31 @@
 import { Link } from "gatsby"
 import React, { useContext, useState } from "react"
-import { useSpring, animated } from "react-spring"
 import Logout from "../accounts/Logout"
 import StoreContext from "../../context/store"
 import Cart from "../cart/cartWindow"
 import Logo from "../../assets/logo.svg"
 import styled from "styled-components"
-import { neutral, red, Devices, typeScale, elevation } from "../../utils"
+import { neutral, Devices, elevation } from "../../utils"
+import MobileMenu from "./MobileMenu"
+import { useTransition, animated } from "react-spring"
 
 const Header = () => {
   const { customerAccessToken, checkout, isCartOpen, toggleCart } = useContext(
     StoreContext
   )
+  console.log(checkout.lineItems)
   const numberOfItemsArray = []
+
   checkout.lineItems.map(item => {
     numberOfItemsArray.push(item.quantity)
   })
   const reducer = (accumulator, currentValue) => accumulator + currentValue
-  //const NoOfCartItem = numberOfItemsArray.reduce(reducer)
   let NoOfCartItem = 0
   if (numberOfItemsArray.length) {
     NoOfCartItem = numberOfItemsArray.reduce(reducer)
   }
   const [isOpen, setIsOpen] = useState(false)
 
-  const animation = useSpring({
-    opacity: isOpen ? 1 : 0,
-    pointerEvents: isOpen ? "all" : "none",
-  })
   const isAuthenticated =
     customerAccessToken &&
     customerAccessToken.expiresAt &&
@@ -35,50 +33,28 @@ const Header = () => {
       ? true
       : false
 
+  const animation = useTransition(isCartOpen, null, {
+    from: { transform: `translate3d(100%,0,0)` },
+    enter: { transform: `translate3d(0, 0, 0)` },
+    leave: { transform: `translate3d(100%,0,0)` },
+  })
   return (
     <Navbar>
       <Link to="/" className="logo">
         <img style={{ display: "block" }} src={Logo} alt="" />
       </Link>
+      <MobileMenu
+        isAuthenticated={isAuthenticated}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
       <Menu>
-        <animated.div style={animation}>
-          <MobileMenu>
-            <MobileMenuItem>
-              <Link to="/shop">Shop</Link>
-            </MobileMenuItem>
-            <MobileMenuItem>
-              <Link to="/blogs">Blog</Link>
-            </MobileMenuItem>
-
-            <MobileMenuItem>
-              {isAuthenticated ? (
-                <Link to="/account">Account</Link>
-              ) : (
-                <Link to="/account/login">Login</Link>
-              )}
-            </MobileMenuItem>
-            <MobileMenuItem>
-              {isAuthenticated ? (
-                <Logout />
-              ) : (
-                <Link to="/account/register">Sign Up</Link>
-              )}
-            </MobileMenuItem>
-            <MenuCloseButton onClick={() => setIsOpen(false)}>
-              <span className="one"></span>
-              <span className="two"></span>
-            </MenuCloseButton>
-          </MobileMenu>
-        </animated.div>
         <DesktopMenu>
           <DesktopMenuItem>
             <Link to="/shop">Shop</Link>
           </DesktopMenuItem>
           <DesktopMenuItem>
             <Link to="/blogs">Blog</Link>
-          </DesktopMenuItem>
-          <DesktopMenuItem>
-            <Link to="/contact">Contact</Link>
           </DesktopMenuItem>
           <DesktopMenuItem>
             {isAuthenticated ? (
@@ -150,7 +126,16 @@ const Header = () => {
           </g>
         </svg>
       </CartButton>
-      {isCartOpen && <Cart />}
+      {animation.map(
+        ({ item, key, props }) =>
+          item && (
+            <animated.div className="cartWindow" key={key} style={props}>
+              <Cart />
+            </animated.div>
+          )
+      )}
+
+      {/* {isCartOpen && <Cart />} */}
       <MenuButton onClick={() => setIsOpen(true)}>Menu</MenuButton>
     </Navbar>
   )
@@ -167,12 +152,40 @@ const Navbar = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
-
   z-index: 100;
   background-color: ${props => props.theme.background};
   box-shadow: ${elevation[100]}; //background-color: hsla(13, 70%, 100%, 0.4);
   //backdrop-filter: blur(15px);
-  @media ${Devices.tab} {
+
+  .animatedDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .cartWindow {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 40vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 200;
+    background-color: ${props => props.theme.background};
+
+    @supports (
+      (-webkit-backdrop-filter: blur(15px)) or (backdrop-filter: blur(15px))
+    ) {
+      background-color: rgba(255, 255, 255, 0.4);
+      -webkit-backdrop-filter: blur(15px);
+      backdrop-filter: blur(15px);
+    }
+    // transform-origin: right bottom;
+    @media ${Devices.mobile} {
+      width: 100vw;
+    }
   }
 `
 
@@ -184,58 +197,6 @@ const Menu = styled.div`
   }
 `
 
-const MobileMenu = styled.aside`
-  display: none;
-  @media ${Devices.mobile} {
-    position: fixed;
-    display: block;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: ${props => props.theme.background};
-    background-color: white;
-    z-index: 200;
-  }
-`
-const MobileMenuItem = styled.li`
-  font-size: ${typeScale.header3};
-  margin-bottom: 2rem;
-
-  a {
-    text-decoration: none;
-  }
-`
-const MenuCloseButton = styled.button`
-  background: none;
-  position: absolute;
-  top: 5vw;
-  right: 5vw;
-  width: 4.8rem;
-  height: 4.8rem;
-  border: none;
-
-  span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(0);
-    width: 100%;
-    height: 3px;
-    background-color: ${red[300]};
-  }
-
-  span.one {
-    transform: translate(-50%, -50%) rotate(45deg);
-  }
-  span.two {
-    transform: translate(-50%, -50%) rotate(-45deg);
-  }
-`
 const DesktopMenu = styled.ul`
   width: 100%;
   display: flex;

@@ -55,7 +55,6 @@ const NewArrivals = () => {
 
       <NewArrivalGrid>
         {data.allShopifyProduct.edges.slice(0, 8).map(item => {
-          console.log(item)
           return (
             <SmallProductCard
               key={item.node.id}

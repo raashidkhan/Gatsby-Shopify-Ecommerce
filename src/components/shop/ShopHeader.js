@@ -37,7 +37,7 @@ export default ShopHeader
 
 const Header = styled.header`
   width: 100vw;
-  min-height: 70vh;
+  min-height: 80vh;
   padding: 5vw;
   display: flex;
   justify-content: space-between;

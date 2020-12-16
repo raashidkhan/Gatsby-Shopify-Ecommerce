@@ -45,8 +45,6 @@ export const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeLegibility;
     overscroll-behavior-y: none;
     font-family: "Avenir";
-    background-color:${props => props.theme.background};
-    color:${props => props.theme.textColor};
   font-size:1.6rem;
   }
 
@@ -66,7 +64,7 @@ export const GlobalStyle = createGlobalStyle`
  }
  button, li, a{
    &:focus{
-    outline:1px solid ${props => props.theme.primaryColor};
+
     outline-offset:2px;
    }
  }

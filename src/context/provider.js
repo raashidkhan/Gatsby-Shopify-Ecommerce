@@ -10,7 +10,6 @@ const Provider = ({ children }) => {
   const [loading, setLoading] = useState(defaultStoreContext.loading)
 
   const toggleCart = () => {
-    console.log("cart")
     setIsCartOpen(!isCartOpen)
   }
 
@@ -95,7 +94,7 @@ const Provider = ({ children }) => {
         },
         addToCart: async (variantId, quantity, setIsLoading, setIsLoaded) => {
           setIsLoading(true)
-          console.log(variantId, quantity)
+
           const lineItem = [
             {
               variantId: variantId,

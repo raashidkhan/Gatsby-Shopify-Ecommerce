@@ -7,7 +7,6 @@ import Collection from "../components/homepage/Collection"
 import styled from "styled-components"
 const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
-  console.log(product)
 
   return (
     <Layout>

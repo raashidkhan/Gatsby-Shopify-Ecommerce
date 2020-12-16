@@ -21,8 +21,6 @@ const Layout = ({ children }) => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <GlobalFonts />
-      <GlobalStyle />
       <Header siteTitle={data.site.siteMetadata.title} />
       <main className="main">{children}</main>
       <Footer />

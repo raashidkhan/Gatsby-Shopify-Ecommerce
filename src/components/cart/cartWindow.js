@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import Store from "../../context/store"
 import styled from "styled-components"
-
+import CartItem from "./CartItem"
 import {
   Cart,
   CartItemContent,
@@ -10,13 +10,13 @@ import {
   CartPrice,
   CartWrapper,
   CloseButton,
-  RemoveItemButton,
   CartHeading,
 } from "./cartWindowStyles"
 import { PrimarySolidButton } from "../../utils"
 import RemoveButton from "../buttons/RemoveButton"
+
 const CartWindow = () => {
-  const { checkout, toggleCart, removeFromCart } = useContext(Store)
+  const { checkout, toggleCart, isCartOpen } = useContext(Store)
 
   return (
     <Cart>
@@ -35,33 +35,14 @@ const CartWindow = () => {
       <CartWrapper>
         {checkout.lineItems.map(item => {
           return (
-            <CartItemWrapper key={item.id}>
-              <CartItemImage>
-                <img src={item.variant.image.src} alt="" />
-                <p>{item.quantity}</p>
-              </CartItemImage>
-              <CartItemContent>
-                <p>{item.title}</p>
-                <strong>{item.variant.price}</strong>
-              </CartItemContent>
-              {/* <RemoveItemButton
-                title="Remove Item"
-                aria-label="Remove Item"
-                onClick={() => {
-                  removeFromCart(item.id, setIsLoading)
-                }}
-              >
-                {isLoading ? (
-                  <Loader />
-                ) : (
-                  <>
-                    <span className="one"></span>
-                    <span className="two"></span>
-                  </>
-                )}
-              </RemoveItemButton> */}
-              <RemoveButton id={item.id} />
-            </CartItemWrapper>
+            <CartItem
+              key={item.id}
+              id={item.id}
+              image={item.variant?.image.src}
+              quantity={item.quantity}
+              title={item.title}
+              price={item.variant?.price}
+            />
           )
         })}
       </CartWrapper>
