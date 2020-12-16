@@ -46,6 +46,8 @@ export const GlobalStyle = createGlobalStyle`
     overscroll-behavior-y: none;
     font-family: "Avenir";
   font-size:1.6rem;
+  color:hsl(215, 14%, 34%);
+  background-color:hsl(210, 20%, 98%);
   }
 
 
@@ -64,7 +66,7 @@ export const GlobalStyle = createGlobalStyle`
  }
  button, li, a{
    &:focus{
-
+outline:1px solid rgba(0,0,0,0.4);
     outline-offset:2px;
    }
  }

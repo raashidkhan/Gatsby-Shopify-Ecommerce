@@ -13,17 +13,8 @@ const Header = () => {
   const { customerAccessToken, checkout, isCartOpen, toggleCart } = useContext(
     StoreContext
   )
-  console.log(checkout.lineItems)
-  const numberOfItemsArray = []
+  // console.log(checkout.lineItems.length)
 
-  checkout.lineItems.map(item => {
-    numberOfItemsArray.push(item.quantity)
-  })
-  const reducer = (accumulator, currentValue) => accumulator + currentValue
-  let NoOfCartItem = 0
-  if (numberOfItemsArray.length) {
-    NoOfCartItem = numberOfItemsArray.reduce(reducer)
-  }
   const [isOpen, setIsOpen] = useState(false)
 
   const isAuthenticated =
@@ -73,7 +64,11 @@ const Header = () => {
         </DesktopMenu>
       </Menu>
       <CartButton onClick={toggleCart}>
-        {NoOfCartItem > 0 ? <Items>{NoOfCartItem}</Items> : ""}
+        {checkout.lineItems.length === 0 || null ? (
+          ""
+        ) : (
+          <Items>checkout.lineItems.length</Items>
+        )}
 
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89.087 81.655">
           <g
