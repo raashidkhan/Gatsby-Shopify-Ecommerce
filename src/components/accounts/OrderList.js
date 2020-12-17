@@ -53,7 +53,6 @@ const OrderList = ({ orders }) => {
                     {order.node.lineItems.edges
                       .slice(0, numberOfItem)
                       .map(i => {
-                        console.log(i)
                         return (
                           <OutlineTags key={i.node.title}>
                             <Link

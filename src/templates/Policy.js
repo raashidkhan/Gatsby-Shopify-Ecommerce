@@ -3,9 +3,8 @@ import { graphql } from "gatsby"
 import styled from "styled-components"
 import parse from "html-react-parser"
 import Layout from "../components/layout"
-import { typeScale } from "../utils"
+import { Devices, typeScale } from "../utils"
 const Policy = ({ data }) => {
-  console.log(data)
   return (
     <Layout>
       <Section>
@@ -20,6 +19,10 @@ export default Policy
 
 const Section = styled.section`
   padding: 10vw 5vw;
+
+  @media ${Devices.mobile} {
+    padding-top: 7.5rem;
+  }
 
   h2 {
     margin-bottom: 3.2rem;

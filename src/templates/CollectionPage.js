@@ -5,7 +5,7 @@ import Listing from "../components/collectionpage/CollectionProductListing"
 import Layout from "../components/layout"
 const CollectionPage = ({ data }) => {
   const collection = data.shopifyCollection
-  console.log(collection.handle)
+
   return (
     <Layout>
       <Header

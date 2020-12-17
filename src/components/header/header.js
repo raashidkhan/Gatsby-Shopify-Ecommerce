@@ -13,7 +13,6 @@ const Header = () => {
   const { customerAccessToken, checkout, isCartOpen, toggleCart } = useContext(
     StoreContext
   )
-  // console.log(checkout.lineItems.length)
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -64,11 +63,11 @@ const Header = () => {
         </DesktopMenu>
       </Menu>
       <CartButton onClick={toggleCart}>
-        {/* {checkout.lineItems.length === 0 || null ? (
+        {checkout.lineItems.length === 0 || null ? (
           ""
         ) : (
-          <Items>checkout.lineItems.length</Items>
-        )} */}
+          <Items>{checkout.lineItems.length}</Items>
+        )}
 
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89.087 81.655">
           <g
@@ -143,14 +142,13 @@ const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 5vw;
+  padding: 1.6rem 5vw;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 100;
   background-color: ${props => props.theme.background};
-  box-shadow: ${elevation[100]}; //background-color: hsla(13, 70%, 100%, 0.4);
-  //backdrop-filter: blur(15px);
+  box-shadow: ${elevation[100]};
 
   .animatedDiv {
     position: fixed;
@@ -178,7 +176,7 @@ const Navbar = styled.nav`
       backdrop-filter: blur(15px);
     }
     // transform-origin: right bottom;
-    @media ${Devices.mobile} {
+    @media ${Devices.tab} {
       width: 100vw;
     }
   }

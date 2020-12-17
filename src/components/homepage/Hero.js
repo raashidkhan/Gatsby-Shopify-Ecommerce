@@ -27,7 +27,7 @@ const Hero = () => {
         </HeroHeaderImage>
         <HeroHeaderTitle>
           <span>We help your keep your surrounding green and clean.</span>
-          <Link to="#">
+          <Link to="/shop">
             <PrimarySolidButton>Shop Now</PrimarySolidButton>
           </Link>
         </HeroHeaderTitle>

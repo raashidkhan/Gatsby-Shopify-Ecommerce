@@ -160,9 +160,17 @@ const Index = () => {
                   </>
                 )
               }
-              if (error) return console.error(error)
+              if (error)
+                return (
+                  <>
+                    <p>Something went wrong</p>
+                  </>
+                )
 
               // const { defaultAddress, orders, addresses } = data.customer
+              if (data.customer === null) {
+                return <>No data</>
+              }
               const {
                 firstName,
                 lastName,
@@ -172,15 +180,9 @@ const Index = () => {
                 email,
                 phone,
               } = data.customer
-              console.log(data)
+
               return (
                 <>
-                  {/* <AccountIntro>
-                    <h2>Welcome Back {firstName === null ? "" : firstName} </h2>
-                    <SecondaryOutlineButton>
-                      <Logout />
-                    </SecondaryOutlineButton>
-                  </AccountIntro> */}
                   <MainSection>
                     <AccDetails className="accountDetails">
                       <CustomerDetails

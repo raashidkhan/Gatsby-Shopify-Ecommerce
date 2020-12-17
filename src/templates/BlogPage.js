@@ -11,7 +11,6 @@ const BlogPage = ({ data }) => {
   const next = data.nextArticle
   const previous = data.previousArticle
 
-  console.log(next, previous)
   return (
     <Layout>
       <BlogHeader>

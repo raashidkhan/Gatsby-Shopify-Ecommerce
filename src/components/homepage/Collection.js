@@ -103,14 +103,14 @@ const CollectionItemName = styled.figcaption`
   font-size: ${typeScale.header4};
   background-color: rgba(255, 255, 255, 0.9);
   padding: 1.6rem;
-  color: ${props => props.theme.textOnSecondary};
+  //color: ${props => props.theme.textOnSecondary};
   font-family: inherit;
   border-radius: ${radius.large};
   //box-shadow: ${elevation[200]};
   @supports (
     (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))
   ) {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.7);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
   }

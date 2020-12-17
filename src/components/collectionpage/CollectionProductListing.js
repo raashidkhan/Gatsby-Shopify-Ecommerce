@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { Devices, typeScale } from "../../utils"
 import ProductCard from "../products/productCard"
 const CollectionProductListing = ({ list, title }) => {
-  console.log(list)
   return (
     <CollectionWrapper>
       <h2>Our {title} collection</h2>
