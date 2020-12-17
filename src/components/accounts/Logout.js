@@ -19,11 +19,18 @@ const CUSTOMER_LOGOUT = gql`
 
 const Logout = () => {
   const { setValue, customerAccessToken } = useContext(StoreContext)
+
   return (
     <Mutation
       mutation={CUSTOMER_LOGOUT}
       onCompleted={data => {
         if (data.customerAccessTokenDelete.userErrors.length) return
+        setValue({
+          customerAccessToken: "",
+        })
+        navigate("/account/login")
+      }}
+      onError={error => {
         setValue({
           customerAccessToken: "",
         })
