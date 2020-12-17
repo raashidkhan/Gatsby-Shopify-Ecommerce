@@ -34,8 +34,8 @@ const Footer = () => {
         <Link to="/shop">Shop</Link>
         <Link to="/blogs">Blog</Link>
         <Link to="/policy/privacy-policy">Privacy Policy</Link>
-        <Link to="policy/refund-policy">Refund Policy</Link>
-        <Link to="policy/terms-of-service">Terms of Services</Link>
+        <Link to="/policy/refund-policy">Refund Policy</Link>
+        <Link to="/policy/terms-of-service">Terms of Services</Link>
       </Links>
       <Social>
         <a href="#0">

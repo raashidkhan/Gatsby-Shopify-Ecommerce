@@ -18,6 +18,7 @@ const OrderList = ({ orders }) => {
   return (
     <>
       <OrderHeading>Your Recent Orders</OrderHeading>
+
       {orders.map(order => {
         return (
           <OrderCard key={order.node.name}>
@@ -29,8 +30,10 @@ const OrderList = ({ orders }) => {
                 </p>
                 <p>
                   <strong>Price</strong>&nbsp;
-                  {order.node.totalPrice ? "" : order.node.totalPrice}
-                  {order.node.currencyCode ? "" : order.node.currencyCode}
+                  {order.node.totalPrice === null ? "" : order.node.totalPrice}
+                  {order.node.currencyCode === null
+                    ? ""
+                    : order.node.currencyCode}
                 </p>
               </SpaceBetweenBox>
               <SpaceBetweenBox>
@@ -114,7 +117,7 @@ const OrderList = ({ orders }) => {
 export default OrderList
 const OrderHeading = styled.h2`
   font-weight: 400;
-  font-size: ${typeScale.header4};
+  font-size: ${typeScale.header5};
   margin-bottom: 2.4rem;
 `
 const OrderCard = styled.div`

@@ -65,6 +65,7 @@ const Blogs = styled.section`
   width: 100vw;
   padding: 5vw;
   background-color: ${green[100]};
+  overflow-x: hidden;
 
   @media ${Devices.tab} {
     margin-top: 5vw;

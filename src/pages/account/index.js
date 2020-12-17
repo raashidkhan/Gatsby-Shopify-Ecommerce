@@ -175,12 +175,12 @@ const Index = () => {
               console.log(data)
               return (
                 <>
-                  <AccountIntro>
+                  {/* <AccountIntro>
                     <h2>Welcome Back {firstName === null ? "" : firstName} </h2>
                     <SecondaryOutlineButton>
                       <Logout />
                     </SecondaryOutlineButton>
-                  </AccountIntro>
+                  </AccountIntro> */}
                   <MainSection>
                     <AccDetails className="accountDetails">
                       <CustomerDetails

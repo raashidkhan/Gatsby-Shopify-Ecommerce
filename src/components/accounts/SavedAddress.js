@@ -146,6 +146,8 @@ const Add = styled.button`
   justify-content: center;
   align-items: center;
   position: relative;
+  min-height: 15rem;
+  min-width: 10rem;
 
   span {
     width: 40px;

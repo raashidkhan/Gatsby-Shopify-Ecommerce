@@ -129,25 +129,41 @@ export default CustomerUpdateForm
 const FormWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+  background-color: rgba(255, 255, 255, 0.9);
+
+  @supports (
+    (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))
+  ) {
+    background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
 `
 const Form = styled.form`
   width: 40%;
-  background-color: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(25px);
   padding: 5vw;
+  overflow-y: auto;
   box-shadow: ${elevation[200]};
   border-radius: ${radius.large};
   position: relative;
   font-weight: 400;
+  background-color: rgba(255, 255, 255, 1);
 
+  @supports (
+    (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))
+  ) {
+    background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
+  }
   @media ${Devices.tab} {
     width: 90%;
   }
